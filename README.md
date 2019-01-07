@@ -1,5 +1,6 @@
 # oauth1-signer-csharp
 
+[![Build Status](https://travis-ci.org/Mastercard/oauth1-signer-csharp.svg?branch=master)](https://travis-ci.org/Mastercard/oauth1-signer-csharp)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE)
 
 ## Table of Contents
