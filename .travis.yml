@@ -1,0 +1,8 @@
+language: csharp
+mono: none
+dotnet: 2.1.502
+solution: Mastercard.Developer.OAuth1Signer.sln
+script:
+  - dotnet restore
+  - dotnet test -c Release
+  - dotnet publish -c Release
