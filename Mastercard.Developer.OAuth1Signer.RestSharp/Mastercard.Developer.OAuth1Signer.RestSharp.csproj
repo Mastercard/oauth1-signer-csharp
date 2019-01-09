@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.8" />
+    <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.6" /> <!-- Minimum version, inclusive -->
   </ItemGroup>
 
   <ItemGroup>
