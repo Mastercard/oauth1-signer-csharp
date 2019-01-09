@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer.Tests", "Mastercard.Developer.OAuth1Signer.Tests\Mastercard.Developer.OAuth1Signer.Tests.csproj", "{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastercard.Developer.OAuth1Signer.RestSharp", "Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj", "{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer.RestSharp", "Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj", "{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F74CBF3-4672-4176-8DB8-60D56809CCE5}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
