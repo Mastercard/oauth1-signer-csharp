@@ -16,7 +16,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
             var signingKey = TestUtils.GetTestPrivateKey();
             const string consumerKey = "Some key";
             var baseUri = new Uri("https://api.mastercard.com/");
-            IRestRequest request = new RestRequest
+            var request = new RestRequest
             {
                 Method = Method.POST,
                 Resource = "/service"
