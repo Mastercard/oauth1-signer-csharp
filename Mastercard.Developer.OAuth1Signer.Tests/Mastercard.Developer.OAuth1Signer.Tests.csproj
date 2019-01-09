@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj" />
-    <ProjectReference Include="..\Mastercard.Developer.OAuth1Signer\Mastercard.Developer.OAuth1Signer.Core.csproj" />
+    <ProjectReference Include="..\Mastercard.Developer.OAuth1Signer.Core\Mastercard.Developer.OAuth1Signer.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
