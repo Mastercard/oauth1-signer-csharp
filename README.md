@@ -1,8 +1,7 @@
 # oauth1-signer-csharp
 
 [![Build Status](https://travis-ci.org/Mastercard/oauth1-signer-csharp.svg?branch=master)](https://travis-ci.org/Mastercard/oauth1-signer-csharp)
-[![NuGet](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg?label=nuget%20|%20OAuth1Signer.Core)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
-[![NuGet](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.RestSharp.svg?label=nuget%20|%20OAuth1Signer.RestSharp)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core.RestSharp/)
+[![NuGet](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE)
 
 ## Table of Contents
@@ -108,7 +107,7 @@ signer.Sign(baseUri, request);
 [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) generates API client libraries from [OpenAPI Specs](https://github.com/OAI/OpenAPI-Specification). 
 It provides generators and library templates for supporting multiple languages and frameworks.
 
-This library will provide you with some request interceptor classes you can use when configuring your API client. These classes will take care of adding the correct `Authorization` header before sending the request.
+This project provides you with some authenticator classes you can use when configuring your API client. These classes will take care of adding the correct `Authorization` header before sending the request.
 
 + [csharp (targetFramework v5.0)](#csharp-generator-target-framework-v5)
 
