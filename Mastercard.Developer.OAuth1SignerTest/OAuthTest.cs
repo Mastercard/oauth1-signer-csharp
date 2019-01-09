@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Mastercard.Developer.OAuth1Signer;
-using Mastercard.Developer.OAuth1SignerTest.Test;
+using Mastercard.Developer.OAuth1Signer.Core;
+using Mastercard.Developer.OAuth1Signer.Tests.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Mastercard.Developer.OAuth1SignerTest
+namespace Mastercard.Developer.OAuth1Signer.Tests
 {
     [TestClass]
     public class OAuthTest

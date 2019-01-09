@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+// ReSharper disable InconsistentNaming
 
-namespace Mastercard.Developer.OAuth1Signer.Signers
+namespace Mastercard.Developer.OAuth1Signer.Core.Signers
 {
     public abstract class BaseSigner
     {

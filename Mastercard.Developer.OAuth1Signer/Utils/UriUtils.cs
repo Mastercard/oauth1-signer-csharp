@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mastercard.Developer.OAuth1Signer.Utils
+namespace Mastercard.Developer.OAuth1Signer.Core.Utils
 {
     /// <summary>
     /// A class adding the Uri.HexEscape implementation (only supported starting from .NET Standard 2.0).

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Mastercard.Developer.OAuth1Signer.Utils;
+using Mastercard.Developer.OAuth1Signer.Core.Utils;
 
-namespace Mastercard.Developer.OAuth1Signer
+namespace Mastercard.Developer.OAuth1Signer.Core
 {
     /// <summary>
     /// Performs OAuth1.0a compliant signing with body hash support for non-urlencoded content types.

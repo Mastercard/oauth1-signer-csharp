@@ -2,10 +2,10 @@
 using System.Net;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Mastercard.Developer.OAuth1Signer.Signers;
+using Mastercard.Developer.OAuth1Signer.RestSharp.Signers;
 using RestSharp.Portable;
 
-namespace Mastercard.Developer.OAuth1Signer.Authenticators
+namespace Mastercard.Developer.OAuth1Signer.RestSharp.Authenticators
 {
     /// <inheritdoc />
     /// <summary>

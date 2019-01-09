@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
-using Mastercard.Developer.OAuth1Signer.Utils;
+using Mastercard.Developer.OAuth1Signer.Core.Utils;
 
-namespace Mastercard.Developer.OAuth1SignerTest.Test
+namespace Mastercard.Developer.OAuth1Signer.Tests.Test
 {
     internal static class TestUtils
     {

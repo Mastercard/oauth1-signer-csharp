@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer", "Mastercard.Developer.OAuth1Signer\Mastercard.Developer.OAuth1Signer.csproj", "{DE48B59F-51D0-401D-AFB8-9FC53E6DED37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer.Core", "Mastercard.Developer.OAuth1Signer\Mastercard.Developer.OAuth1Signer.Core.csproj", "{DE48B59F-51D0-401D-AFB8-9FC53E6DED37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1SignerTest", "Mastercard.Developer.OAuth1SignerTest\Mastercard.Developer.OAuth1SignerTest.csproj", "{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer.Tests", "Mastercard.Developer.OAuth1SignerTest\Mastercard.Developer.OAuth1Signer.Tests.csproj", "{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastercard.Developer.OAuth1Signer.RestSharp", "Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj", "{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0C28D2-674A-4E1B-9A9C-A7241E50DDD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,10 @@
 ﻿using System;
-using Mastercard.Developer.OAuth1Signer.Signers;
-using Mastercard.Developer.OAuth1SignerTest.Test;
+using Mastercard.Developer.OAuth1Signer.RestSharp.Signers;
+using Mastercard.Developer.OAuth1Signer.Tests.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp.Portable;
 
-namespace Mastercard.Developer.OAuth1SignerTest.Signers
+namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
 {
     [TestClass]
     public class RestSharpSignerTest
