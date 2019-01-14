@@ -31,13 +31,9 @@ namespace Mastercard.Developer.OAuth1Signer.Core
                 { "oauth_nonce", GetNonce() },
                 { "oauth_timestamp", GetTimestamp() },
                 { "oauth_signature_method", "RSA-SHA256" },
-                { "oauth_version", "1.0" }
+                { "oauth_version", "1.0" },
+                { "oauth_body_hash", GetBodyHash(payload, encoding) }
             };
-
-            if (!string.IsNullOrEmpty(payload))
-            {
-                oauthParameters.Add("oauth_body_hash", GetBodyHash(payload, encoding));
-            }
 
             // Compute the OAuth signature
             var oauthParamString = GetOAuthParamString(queryParameters, oauthParameters);
@@ -99,8 +95,9 @@ namespace Mastercard.Developer.OAuth1Signer.Core
 
         /// <summary>
         /// Generates a hash based on request payload as per https://tools.ietf.org/id/draft-eaton-oauth-bodyhash-00.html.
+        /// "If the request does not have an entity body, the hash should be taken over the empty string".
         /// </summary>
-        internal static string GetBodyHash(string payload, Encoding encoding) => Convert.ToBase64String(Sha256Digest(payload, encoding));
+        internal static string GetBodyHash(string payload, Encoding encoding) => Convert.ToBase64String(Sha256Digest(payload ?? string.Empty, encoding));
         
         /// <summary>
         /// Lexicographically sort all parameters and concatenate them into a string as per https://tools.ietf.org/html/rfc5849#section-3.4.1.3.2.
