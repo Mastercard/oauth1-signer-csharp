@@ -17,7 +17,7 @@ namespace Mastercard.Developer.OAuth1Signer.Core.Utils
             X509KeyStorageFlags keyStorageFlags = X509KeyStorageFlags.DefaultKeySet)
         {
             if (pkcs12KeyFilePath == null) throw new ArgumentNullException(nameof(pkcs12KeyFilePath));
-            var signingCertificate = new X509Certificate2(pkcs12KeyFilePath, signingKeyPassword, keyStorageFlags | X509KeyStorageFlags.Exportable);
+            var signingCertificate = new X509Certificate2(pkcs12KeyFilePath, signingKeyPassword, keyStorageFlags);
             return signingCertificate.GetRSAPrivateKey();
         }
     }
