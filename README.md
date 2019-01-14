@@ -109,7 +109,10 @@ It provides generators and library templates for supporting multiple languages a
 
 This project provides you with some authenticator classes you can use when configuring your API client. These classes will take care of adding the correct `Authorization` header before sending the request.
 
+Generators currently supported:
 + [csharp (targetFramework v5.0)](#csharp-generator-target-framework-v5)
+
+See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md).
 
 #### csharp (targetFramework v5.0) <a name="csharp-generator-target-framework-v5"></a>
 
@@ -122,8 +125,6 @@ config.json:
 ```json
 { "targetFramework": "v5.0" }
 ```
-
-See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md)
 
 ##### Usage of the RestSharpOAuth1Authenticator
 
