@@ -83,11 +83,41 @@ These classes will modify the provided request object in-place and will add the 
 
 Usage briefly described below, but you can also refer to the test project for examples. 
 
++ [System.Net.Http.HttpClient](#system-net-http-httpclient)
 + [RestSharp Portable](#restsharp-portable)
+
+#### System.Net.Http.HttpClient <a name="system-net-http-httpclient"></a>
+
+The `NetHttpClientSigner` class is located in the `Mastercard.Developer.OAuth1Signer.Core` package. 
+
+Usage:
+```cs
+var baseUri = new Uri("https://api.mastercard.com/");
+var httpClient = new HttpClient(new RequestSignerHandler(ConsumerKey, signingKey)) { BaseAddress = baseUri };
+var postTask = httpClient.PostAsync(new Uri("/service", UriKind.Relative), new StringContent("{\"foo\":\"bår\"}");
+
+// (...)
+
+internal class RequestSignerHandler : HttpClientHandler
+{
+    private readonly NetHttpClientSigner signer;
+
+    public RequestSignerHandler(string consumerKey, RSA signingKey)
+    {
+        signer = new NetHttpClientSigner(consumerKey, signingKey);
+    }
+
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        signer.Sign(request);
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+```
 
 #### RestSharp Portable <a name="restsharp-portable"></a>
 
-The `RestSharpSigner` class is provided by the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
+The `RestSharpSigner` class is located in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
 
 Usage:
 ```cs
@@ -128,7 +158,7 @@ config.json:
 
 ##### Usage of the RestSharpOAuth1Authenticator
 
-`RestSharpOAuth1Authenticator` is provided in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
+`RestSharpOAuth1Authenticator` is located in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
 
 ```cs
 var config = Configuration.Default;
