@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Mastercard.Developer.OAuth1Signer.Core</Authors>
     <Company>Mastercard Worldwide</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
