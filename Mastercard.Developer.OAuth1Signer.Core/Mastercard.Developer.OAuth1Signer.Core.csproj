@@ -7,7 +7,6 @@
     <Authors>Mastercard.Developer.OAuth1Signer.Core</Authors>
     <Company>Mastercard Worldwide</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Documentation>README.md</Documentation>
     <PackageProjectUrl>https://github.com/Mastercard/oauth1-signer-csharp</PackageProjectUrl>
     <PackageReleaseNotes>See: https://github.com/Mastercard/oauth1-signer-csharp/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Mastercard/oauth1-signer-csharp</RepositoryUrl>
@@ -15,8 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../LICENSE" Pack="true" PackagePath="LICENSE"/>
-    <None Include="../README.md" Pack="true" PackagePath="README.md"/>
+    <None Include="../LICENSE" Pack="true" PackagePath=""/>
+    <None Include="../README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
