@@ -2,16 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>1.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Company>Mastercard Worldwide</Company>
+    <Version>1.1.0</Version>
     <Product>Mastercard.Developer.OAuth1Signer.RestSharp</Product>
-    <PackageLicenseUrl>https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE</PackageLicenseUrl>
+    <Company>Mastercard Worldwide</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <DocumentationFile>README.md</DocumentationFile>
     <PackageProjectUrl>https://github.com/Mastercard/oauth1-signer-csharp</PackageProjectUrl>
     <PackageReleaseNotes>See: https://github.com/Mastercard/oauth1-signer-csharp/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Mastercard/oauth1-signer-csharp</RepositoryUrl>
     <Description>Zero dependency library for generating a Mastercard API compliant OAuth signature</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../LICENSE" Pack="true" PackagePath=""/>
+    <None Include="../README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.6" /> <!-- Minimum version, inclusive -->
