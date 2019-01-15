@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
+#pragma warning disable 1591
 
 namespace Mastercard.Developer.OAuth1Signer.Core
 {

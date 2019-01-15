@@ -5,6 +5,7 @@ using System.Text;
 using Mastercard.Developer.OAuth1Signer.Core;
 using Mastercard.Developer.OAuth1Signer.Core.Signers;
 using RestSharp.Portable;
+#pragma warning disable 1591
 
 namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
 {

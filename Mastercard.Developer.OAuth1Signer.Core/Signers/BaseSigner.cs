@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 // ReSharper disable InconsistentNaming
+#pragma warning disable 1591
 
 namespace Mastercard.Developer.OAuth1Signer.Core.Signers
 {
