@@ -93,7 +93,7 @@ The `NetHttpClientSigner` class is located in the `Mastercard.Developer.OAuth1Si
 Usage:
 ```cs
 var baseUri = new Uri("https://api.mastercard.com/");
-var httpClient = new HttpClient(new RequestSignerHandler(ConsumerKey, signingKey)) { BaseAddress = baseUri };
+var httpClient = new HttpClient(new RequestSignerHandler(consumerKey, signingKey)) { BaseAddress = baseUri };
 var postTask = httpClient.PostAsync(new Uri("/service", UriKind.Relative), new StringContent("{\"foo\":\"bår\"}");
 
 // (...)
