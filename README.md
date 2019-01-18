@@ -12,6 +12,7 @@
 - [Usage](#usage)
   * [Prerequisites](#prerequisites)
   * [Adding the Libraries to Your Project](#adding-the-libraries-to-your-project)
+  * [Loading the Signing Key](#loading-the-signing-key) 
   * [Creating the OAuth Authorization Header](#creating-the-oauth-authorization-header)
   * [Signing HTTP Client Request Objects](#signing-http-client-request-objects)
   * [Integrating with OpenAPI Generator API Client Libraries](#integrating-with-openapi-generator-api-client-libraries)
@@ -35,14 +36,6 @@ As part of this set up, you'll receive credentials for your app:
 * A consumer key (displayed on the Mastercard Developer Portal)
 * A private request signing key (matching the public certificate displayed on the Mastercard Developer Portal)
 
-```cs
-var consumerKey = "<insert consumer key>";
-var signingKey = SecurityUtils.LoadPrivateKey(
-						"<insert PKCS#12 key file path>", 
-						"<insert key alias>", 
-						"<insert key password>");
-```
-
 ### Adding the Libraries to Your Project <a name="adding-the-libraries-to-your-project"></a>
 
 #### Package Manager
@@ -57,22 +50,24 @@ dotnet add package Mastercard.Developer.OAuth1Signer.Core
 dotnet add package Mastercard.Developer.OAuth1Signer.RestSharp
 ```
 
+### Loading the Signing Key <a name="loading-the-signing-key"></a>
+```cs
+var signingKey = SecurityUtils.LoadPrivateKey(
+						"<insert PKCS#12 key file path>", 
+						"<insert key alias>", 
+						"<insert key password>");
+```
+
 ### Creating the OAuth Authorization Header <a name="creating-the-oauth-authorization-header"></a>
 The method that does all the heavy lifting is `OAuth.GetAuthorizationHeader`, in the `Mastercard.Developer.OAuth1Signer.Core` package. 
 You can call into it directly and as long as you provide the correct parameters, it will return a string that you can add into your request's `Authorization` header.
 
 ```cs
 var consumerKey = "<insert consumer key>";
-var signingKey = SecurityUtils.LoadPrivateKey(
-						"<insert PKCS#12 key file path>", 
-						"<insert key alias>", 
-						"<insert key password>");
-
 var uri = "https://sandbox.api.mastercard.com/service";
 var method = "GET";
 var payload = "Hello world!";
 var encoding = Encoding.UTF8;
-
 var authHeader = OAuth.GetAuthorizationHeader(uri, method, payload, encoding, consumerKey, signingKey);
 ```
 
