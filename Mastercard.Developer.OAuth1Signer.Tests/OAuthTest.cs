@@ -39,22 +39,44 @@ namespace Mastercard.Developer.OAuth1Signer.Tests
         }
 
         [TestMethod]
-        public void TestGetOAuthParamString_ShouldSortParametersAndValues()
+        public void TestGetOAuthParamString_ShouldSupportRfcExample()
         {
             var queryParameters = new Dictionary<string, List<string>>
             {
-                { "param2", new List<string> { "hello" } },
-                { "first_param", new List<string> { "value", "othervalue" } },
-                { "param3", new List<string> { "world" } }
+                { "b5", new List<string> { "%3D%253D" } },
+                { "a3", new List<string> { "a", "2%20q" } },
+                { "c%40", new List<string> { string.Empty } },
+                { "a2", new List<string> { "r%20b" } },
+                { "c2", new List<string> { string.Empty } }
             };
             var oauthParameters = new Dictionary<string, string>
             {
-                { "oauth_nonce", "randomnonce" },
-                { "oauth_body_hash", "body/hash" }
+                { "oauth_consumer_key", "9djdj82h48djs9d2" },
+                { "oauth_token", "kkk9d7dh3k39sjv7" },
+                { "oauth_signature_method", "HMAC-SHA1" },
+                { "oauth_timestamp", "137131201" },
+                { "oauth_nonce", "7d8f3e4a" }
             };
 
             var paramString = OAuth.GetOAuthParamString(queryParameters, oauthParameters);
-            Assert.AreEqual("first_param=othervalue&first_param=value&oauth_body_hash=body/hash&oauth_nonce=randomnonce&param2=hello&param3=world", paramString);
+            Assert.AreEqual("a2=r%20b&a3=2%20q&a3=a&b5=%3D%253D&c%40=&c2=&oauth_consumer_key=9djdj82h48djs9d2&oauth_nonce=7d8f3e4a&oauth_signature_method=HMAC-SHA1&oauth_timestamp=137131201&oauth_token=kkk9d7dh3k39sjv7", paramString);
+        }
+
+        [TestMethod]
+        public void TestGetOAuthParamString_ShouldUseAscendingByteValueOrdering()
+        {
+            var queryParameters = new Dictionary<string, List<string>>
+            {
+                { "b", new List<string> { "b" } },
+                { "A", new List<string> { "a", "A" } },
+                { "B", new List<string> { "B" } },
+                { "a", new List<string> { "A", "a" } },
+                { "0", new List<string> { "0" } },
+            };
+            var oauthParameters = new Dictionary<string, string>();
+
+            var paramString = OAuth.GetOAuthParamString(queryParameters, oauthParameters);
+            Assert.AreEqual("0=0&A=A&A=a&B=B&a=A&a=a&b=b", paramString);
         }
 
         [TestMethod]
