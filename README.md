@@ -39,13 +39,13 @@ As part of this set up, you'll receive credentials for your app:
 ### Adding the Libraries to Your Project <a name="adding-the-libraries-to-your-project"></a>
 
 #### Package Manager
-```
+```shell
 Install-Package Mastercard.Developer.OAuth1Signer.Core
 Install-Package Mastercard.Developer.OAuth1Signer.RestSharp
 ```
 
 #### .NET CLI
-```
+```shell
 dotnet add package Mastercard.Developer.OAuth1Signer.Core
 dotnet add package Mastercard.Developer.OAuth1Signer.RestSharp
 ```
@@ -93,7 +93,6 @@ Usage:
 var baseUri = new Uri("https://api.mastercard.com/");
 var httpClient = new HttpClient(new RequestSignerHandler(consumerKey, signingKey)) { BaseAddress = baseUri };
 var postTask = httpClient.PostAsync(new Uri("/service", UriKind.Relative), new StringContent("{\"foo\":\"bår\"}");
-
 // (...)
 
 internal class RequestSignerHandler : HttpClientHandler
@@ -146,7 +145,7 @@ See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-ge
 
 ##### OpenAPI Generator
 
-```
+```shell
 java -jar openapi-generator-cli.jar generate -i openapi-spec.yaml -g csharp -c config.json -o out
 ```
 config.json:
