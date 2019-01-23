@@ -1,7 +1,7 @@
 language: csharp
 matrix:
   include:
-    - dotnet: 2.1.300 # first .NET Core 2.1 SDK release
+    - dotnet: 2.1.400
       mono: none
     - dotnet: 2.1     # latest available release
       mono: none
