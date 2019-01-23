@@ -1,6 +1,8 @@
 language: csharp
 mono: none
-dotnet: 2.1.502
+dotnet:
+  - 2.1.300     # first .NET Core 2.1.0 SDK release
+  - 2.1         # latest available release
 solution: Mastercard.Developer.OAuth1Signer.sln
 script:
   - dotnet restore
