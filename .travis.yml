@@ -1,10 +1,8 @@
 language: csharp
 matrix:
   include:
-    - dotnet: 2.1.502 # first .NET Core 2.1.0 SDK release
-      mono: none
+    - dotnet: 2.1.300 # first .NET Core 2.1 SDK release
     - dotnet: 2.1     # latest available release
-      mono: none
 solution: Mastercard.Developer.OAuth1Signer.sln
 script:
   - dotnet restore
