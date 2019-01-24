@@ -163,9 +163,9 @@ namespace Mastercard.Developer.OAuth1Signer.Core
         /// </summary>
         internal static string GetSignatureBaseString(string baseUri, string httpMethod, string oauthParamString)
         {
-           return ToUriRfc3986(httpMethod.ToUpper())      // Uppercase HTTP method
-                  + "&" + ToUriRfc3986(baseUri)           // Base URI 
-                  + "&" + ToUriRfc3986(oauthParamString); // OAuth parameter string
+           return httpMethod.ToUpper()                      // Uppercase HTTP method
+                  + "&" + ToUriRfc3986(baseUri)             // Base URI 
+                  + "&" + ToUriRfc3986(oauthParamString);   // OAuth parameter string
         }
 
         /// <summary>
