@@ -67,7 +67,7 @@ You can call into it directly and as long as you provide the correct parameters,
 ```cs
 var consumerKey = "<insert consumer key>";
 var uri = "https://sandbox.api.mastercard.com/service";
-var method = "GET";
+var method = "POST";
 var payload = "Hello world!";
 var encoding = Encoding.UTF8;
 var authHeader = OAuth.GetAuthorizationHeader(uri, method, payload, encoding, consumerKey, signingKey);
