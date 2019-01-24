@@ -34,6 +34,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests
         [TestMethod]
         public void TestGetBodyHash()
         {
+            Assert.AreEqual("47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=", OAuth.GetBodyHash(null, Encoding.UTF8));
             Assert.AreEqual("47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=", OAuth.GetBodyHash(string.Empty, Encoding.UTF8));
             Assert.AreEqual("+Z+PWW2TJDnPvRcTgol+nKO3LT7xm8smnsg+//XMIyI=", OAuth.GetBodyHash("{\"foõ\":\"bar\"}", Encoding.UTF8));
         }
