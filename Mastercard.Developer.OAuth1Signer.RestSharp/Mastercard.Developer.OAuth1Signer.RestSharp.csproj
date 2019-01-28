@@ -5,17 +5,18 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.2.0</Version>
     <Product>Mastercard.Developer.OAuth1Signer.RestSharp</Product>
-    <Company>Mastercard Worldwide</Company>
+    <Company>Mastercard</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Mastercard/oauth1-signer-csharp</PackageProjectUrl>
     <PackageReleaseNotes>See: https://github.com/Mastercard/oauth1-signer-csharp/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Mastercard/oauth1-signer-csharp</RepositoryUrl>
     <Description>Zero dependency library for generating a Mastercard API compliant OAuth signature</Description>
+    <Authors>Mastercard</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../LICENSE" Pack="true" PackagePath=""/>
-    <None Include="../README.md" Pack="true" PackagePath=""/>
+    <None Include="../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
+    <Authors>Mastercard</Authors>
+    <Company>Mastercard</Company>
   </PropertyGroup>
 
   <ItemGroup>
