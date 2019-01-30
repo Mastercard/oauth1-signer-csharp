@@ -139,12 +139,11 @@ This project provides you with some authenticator classes you can use when confi
 Generators currently supported:
 + [csharp (targetFramework v5.0)](#csharp-generator-target-framework-v5)
 
-See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md).
-
 #### csharp (targetFramework v5.0) <a name="csharp-generator-target-framework-v5"></a>
 
 ##### OpenAPI Generator
 
+Client libraries can be generated using the following command:
 ```shell
 java -jar openapi-generator-cli.jar generate -i openapi-spec.yaml -g csharp -c config.json -o out
 ```
@@ -152,8 +151,9 @@ config.json:
 ```json
 { "targetFramework": "v5.0" }
 ```
+See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md).
 
-##### Usage of the RestSharpOAuth1Authenticator
+##### Usage of the `RestSharpOAuth1Authenticator`
 
 `RestSharpOAuth1Authenticator` is located in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
 
