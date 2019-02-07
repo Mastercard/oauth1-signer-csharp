@@ -151,7 +151,10 @@ config.json:
 ```json
 { "targetFramework": "v5.0" }
 ```
-See also: [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md).
+
+See also: 
+* [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
+* [CONFIG OPTIONS for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md)
 
 ##### Usage of the `RestSharpOAuth1Authenticator`
 
