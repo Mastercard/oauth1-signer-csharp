@@ -6,7 +6,9 @@ matrix:
     - dotnet: 2.1     # latest available release
       mono: none
 solution: Mastercard.Developer.OAuth1Signer.sln
-script:
+install:
+  - dotnet tool install --global dotnet-sonarscanner
   - dotnet restore
+script:
   - dotnet test -c Release
   - dotnet publish -c Release
