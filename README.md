@@ -1,9 +1,10 @@
 # oauth1-signer-csharp
 
-[![Build Status](https://travis-ci.org/Mastercard/oauth1-signer-csharp.svg?branch=master)](https://travis-ci.org/Mastercard/oauth1-signer-csharp)
-[![NuGet, Core](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg?label=nuget%20|%20core)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
-[![NuGet, RestSharp](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharp.svg?label=nuget%20|%20restsharp)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE)
+[![](https://travis-ci.org/Mastercard/oauth1-signer-csharp.svg?branch=master)](https://travis-ci.org/Mastercard/oauth1-signer-csharp)
+[![](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_oauth1-signer-csharp&metric=alert_status)](https://sonarcloud.io/dashboard?id=Mastercard_oauth1-signer-csharp) 
+[![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg?label=nuget%20|%20core)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
+[![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharp.svg?label=nuget%20|%20restsharp)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/)
+[![](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE)
 
 ## Table of Contents
 - [Overview](#overview)
