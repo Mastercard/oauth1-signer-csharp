@@ -18,7 +18,8 @@ script:
     /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
     /d:sonar.host.url="$SONAR_URL" \
     /d:sonar.login="$SONAR_TOKEN" \
-    /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/TestResults/results.trx"
-  - dotnet test -c Release -l:"trx;LogFileName=results.trx"
+    /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/TestResults/results.trx" \
+    /d:sonar.cs.opencover.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/TestResults/coverage.xml"
+  - dotnet test -c Release -l:"trx;LogFileName=results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="TestResults/coverage.xml"
   - dotnet publish -c Release
   - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
