@@ -23,7 +23,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Authenticators
             Signer = new RestSharpSigner(consumerKey, signingKey);
         }
 
-        public Task PreAuthenticate(IRestClient client, IRestRequest restRequest, ICredentials credentials) => Task.Run(() => Signer.Sign(BaseUri, restRequest));
+        public Task PreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => Task.Run(() => Signer.Sign(BaseUri, request));
 
         public bool CanPreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => true;
 
