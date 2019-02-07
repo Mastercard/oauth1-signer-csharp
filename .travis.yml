@@ -9,6 +9,8 @@ solution: Mastercard.Developer.OAuth1Signer.sln
 install:
   - dotnet tool install --global dotnet-sonarscanner
   - dotnet restore
+before_script:
+  - export PATH="$PATH:$HOME/.dotnet/tools"
 script:
   - dotnet sonarscanner begin /k:"$SONAR_PROJECT_KEY" /d:sonar.organization="$SONAR_ORGANIZATION_KEY" /d:sonar.host.url="$SONAR_URL" /d:sonar.login="$SONAR_TOKEN"
   - dotnet test -c Release
