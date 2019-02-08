@@ -6,6 +6,8 @@ matrix:
     - dotnet: 2.1     # latest available release
       mono: none
 solution: Mastercard.Developer.OAuth1Signer.sln
+env:
+  - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/TestResults
 install:
   - dotnet tool install --global dotnet-sonarscanner
   - dotnet restore
@@ -18,8 +20,9 @@ script:
     /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
     /d:sonar.host.url="$SONAR_URL" \
     /d:sonar.login="$SONAR_TOKEN" \
-    /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/TestResults/results.trx" \
-    /d:sonar.cs.opencover.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/TestResults/coverage.xml"
+    /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/results.trx" \
+    /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml" \
+    /d:sonar.exclusions="${TEST_RESULTS_PATH}/**/*"
   - dotnet test -c Release -l:"trx;LogFileName=results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="TestResults/coverage.xml"
   - dotnet publish -c Release
   - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
