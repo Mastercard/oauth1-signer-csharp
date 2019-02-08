@@ -8,6 +8,8 @@ matrix:
 solution: Mastercard.Developer.OAuth1Signer.sln
 env:
   - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/TestResults
+git:
+  depth: false        # "Shallow clone detected during the analysis"
 install:
   - dotnet tool install --global dotnet-sonarscanner
   - dotnet restore
