@@ -15,15 +15,22 @@ install:
   - dotnet restore
 before_script:
   - export PATH="$PATH:$HOME/.dotnet/tools"
-script:
-  - |
-    dotnet sonarscanner begin \
-    /k:"$SONAR_PROJECT_KEY" \
-    /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
-    /d:sonar.host.url="$SONAR_URL" \
-    /d:sonar.login="$SONAR_TOKEN" \
-    /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/results.trx" \
-    /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml"
-  - dotnet test -c Release -l:"trx;LogFileName=results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="TestResults/coverage.xml"
-  - dotnet publish -c Release
-  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+jobs:
+  include:
+    - stage: Sonar (begin)
+      script:
+        - |
+          dotnet sonarscanner begin \
+          /k:"$SONAR_PROJECT_KEY" \
+          /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
+          /d:sonar.host.url="$SONAR_URL" \
+          /d:sonar.login="$SONAR_TOKEN" \
+          /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/results.trx" \
+          /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml"
+    - stage: Test
+      script:
+        - dotnet test -c Release -l:"trx;LogFileName=results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="TestResults/coverage.xml"
+        - dotnet publish -c Release
+    - stage: Sonar (end)
+      script:
+        - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
