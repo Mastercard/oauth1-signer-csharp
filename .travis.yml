@@ -1,13 +1,7 @@
 language: csharp
-matrix:
-  include:
-    - dotnet: 2.1.500
-      mono: none
-    - dotnet: 2.1     # latest available release
-      mono: none
+dotnet: 2.1     # latest available release
+mono: none
 solution: Mastercard.Developer.OAuth1Signer.sln
-env:
-  - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/TestResults
 git:
   depth: false        # "Shallow clone detected during the analysis"
 install:
@@ -18,6 +12,8 @@ before_script:
 jobs:
   include:
     - stage: Sonar (begin)
+      env:
+        - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/TestResults
       script:
         - |
           dotnet sonarscanner begin \
