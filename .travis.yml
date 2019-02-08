@@ -1,17 +1,25 @@
 language: csharp
-dotnet: 2.1     # latest available release
-mono: none
 solution: Mastercard.Developer.OAuth1Signer.sln
-git:
-  depth: false        # "Shallow clone detected during the analysis"
-install:
-  - dotnet tool install --global dotnet-sonarscanner
-  - dotnet restore
-before_script:
-  - export PATH="$PATH:$HOME/.dotnet/tools"
 jobs:
   include:
-    - stage: Sonar (begin)
+    - stage: Test
+      dotnet: 2.1.500
+      mono: none
+      install:
+        - dotnet restore
+      script:
+        - dotnet test -c Release
+        - dotnet publish -c Release
+    - stage: Test with code analysis
+      dotnet: 2.1     # latest available release
+      mono: none
+      git:
+        depth: false  # "Shallow clone detected during the analysis"
+      install:
+        - dotnet tool install --global dotnet-sonarscanner
+        - dotnet restore
+      before_script:
+        - export PATH="$PATH:$HOME/.dotnet/tools"
       env:
         - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/TestResults
       script:
@@ -23,10 +31,6 @@ jobs:
           /d:sonar.login="$SONAR_TOKEN" \
           /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/results.trx" \
           /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml"
-    - stage: Test
-      script:
         - dotnet test -c Release -l:"trx;LogFileName=results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="TestResults/coverage.xml"
         - dotnet publish -c Release
-    - stage: Sonar (end)
-      script:
         - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
