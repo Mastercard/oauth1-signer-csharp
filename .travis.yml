@@ -1,36 +1,32 @@
 language: csharp
-solution: Mastercard.Developer.OAuth1Signer.sln
-jobs:
+git:
+  depth: false  # "Shallow clone detected during the analysis"
+matrix:
+  fast_finish: true
   include:
-    - stage: Test
-      dotnet: 2.1.500
-      mono: none
-      install:
-        - dotnet restore
-      script:
-        - dotnet test -c Release
-        - dotnet publish -c Release
-    - stage: Test with code analysis
-      dotnet: 2.1     # latest available release
-      mono: none
-      git:
-        depth: false  # "Shallow clone detected during the analysis"
-      install:
-        - dotnet tool install --global dotnet-sonarscanner
-        - dotnet restore
-      before_script:
-        - export PATH="$PATH:$HOME/.dotnet/tools"
-      env:
-        - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/bin
-      script:
-        - |
-          dotnet sonarscanner begin \
-          /k:"$SONAR_PROJECT_KEY" \
-          /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
-          /d:sonar.host.url="$SONAR_URL" \
-          /d:sonar.login="$SONAR_TOKEN" \
-          /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/tests.trx" \
-          /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml"
-        - dotnet test -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
-        - dotnet publish -c Release
-        - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+  - dotnet: 2.1.500
+    mono: none
+  - dotnet: 2.1  # latest available release
+    mono: none  
+    env: 
+      - WITH_SONAR_ANALYSIS=true
+      - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/bin
+solution: Mastercard.Developer.OAuth1Signer.sln
+before_script:
+  - export PATH="$PATH:$HOME/.dotnet/tools"
+install:
+  - test $WITH_SONAR_ANALYSIS && dotnet tool install --global dotnet-sonarscanner
+  - dotnet restore
+script:  
+  - |
+    test $WITH_SONAR_ANALYSIS && dotnet sonarscanner begin \
+    /k:"$SONAR_PROJECT_KEY" \
+    /d:sonar.projectName="$SONAR_PROJECT_NAME" \
+    /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
+    /d:sonar.host.url="$SONAR_URL" \
+    /d:sonar.login="$SONAR_TOKEN" \
+    /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/tests.trx" \
+    /d:sonar.cs.opencover.reportsPaths="${TEST_RESULTS_PATH}/coverage.xml"
+  - dotnet test -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
+  - dotnet publish -c Release
+  - test $WITH_SONAR_ANALYSIS && dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
