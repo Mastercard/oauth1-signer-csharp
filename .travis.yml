@@ -9,16 +9,16 @@ matrix:
   - dotnet: 2.1  # latest available release
     mono: none  
     env: 
-      - WITH_SONAR_ANALYSIS=true
+      - WITH_SONAR_ANALYSIS=$([ "$TRAVIS_PULL_REQUEST" = "false" ] && echo true || echo false)
       - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/bin
 solution: Mastercard.Developer.OAuth1Signer.sln
 install:
   - dotnet restore
-  - test $WITH_SONAR_ANALYSIS && dotnet tool install --global dotnet-sonarscanner || echo 'Skipping sonarscanner install'
+  - test "$WITH_SONAR_ANALYSIS" = "true" && dotnet tool install --global dotnet-sonarscanner || echo 'Skipping sonarscanner install'
 before_script:
   - export PATH="$PATH:$HOME/.dotnet/tools"
   - |
-    test $WITH_SONAR_ANALYSIS && dotnet sonarscanner begin \
+    test "$WITH_SONAR_ANALYSIS" = "true" && dotnet sonarscanner begin \
     /k:"$SONAR_PROJECT_KEY" \
     /n:"$SONAR_PROJECT_NAME" \
     /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
@@ -30,4 +30,4 @@ script:
   - dotnet test -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
   - dotnet publish -c Release
 after_success:
-  - test $WITH_SONAR_ANALYSIS && dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || echo 'Skipping sonarscanner end'
+  - test "$WITH_SONAR_ANALYSIS" = "true" && dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || echo 'Skipping sonarscanner end'
