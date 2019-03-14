@@ -21,7 +21,7 @@ before_script:
     test "$WITH_SONAR_ANALYSIS" = "true" && dotnet sonarscanner begin \
     /k:"$SONAR_PROJECT_KEY" \
     /n:"$SONAR_PROJECT_NAME" \
-    /d:sonar.organization="$SONAR_ORGANIZATION_KEY" \
+    /o:"$SONAR_ORGANIZATION_KEY" \
     /d:sonar.host.url="$SONAR_URL" \
     /d:sonar.login="$SONAR_TOKEN" \
     /d:sonar.cs.vstest.reportsPaths="${TEST_RESULTS_PATH}/tests.trx" \
