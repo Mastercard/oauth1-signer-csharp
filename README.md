@@ -53,12 +53,12 @@ dotnet add package Mastercard.Developer.OAuth1Signer.RestSharp
 
 ### Loading the Signing Key <a name="loading-the-signing-key"></a>
 
-A `System.Security.Cryptography.RSA` key object can be created by calling the `SecurityUtils.LoadPrivateKey` method:
+A `System.Security.Cryptography.RSA` key object can be created by calling the `AuthenticationUtils.LoadSigningKey` method:
 ```cs
-var signingKey = SecurityUtils.LoadPrivateKey(
-						"<insert PKCS#12 key file path>", 
-						"<insert key alias>", 
-						"<insert key password>");
+var signingKey = AuthenticationUtils.LoadSigningKey(
+                        "<insert PKCS#12 key file path>", 
+                        "<insert key alias>", 
+                        "<insert key password>");
 ```
 
 ### Creating the OAuth Authorization Header <a name="creating-the-oauth-authorization-header"></a>

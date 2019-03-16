@@ -13,7 +13,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
         public void TestSign_ShouldAddOAuth1HeaderToPostRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestPrivateKey();
+            var signingKey = TestUtils.GetTestSigningKey();
             const string consumerKey = "Some key";
             var request = new HttpRequestMessage
             {
@@ -34,7 +34,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
         public void TestSign_ShouldAddOAuth1HeaderToGetRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestPrivateKey();
+            var signingKey = TestUtils.GetTestSigningKey();
             const string consumerKey = "Some key";
             var request = new HttpRequestMessage
             {

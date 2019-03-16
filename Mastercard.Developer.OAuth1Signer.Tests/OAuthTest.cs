@@ -137,7 +137,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests
         public void TestSignSignatureBaseString()
         {
             const string expectedSignatureString = "IJeNKYGfUhFtj5OAPRI92uwfjJJLCej3RCMLbp7R6OIYJhtwxnTkloHQ2bgV7fks4GT/A7rkqrgUGk0ewbwIC6nS3piJHyKVc7rvQXZuCQeeeQpFzLRiH3rsb+ZS+AULK+jzDje4Fb+BQR6XmxuuJmY6YrAKkj13Ln4K6bZJlSxOizbNvt+Htnx+hNd4VgaVBeJKcLhHfZbWQxK76nMnjY7nDcM/2R6LUIR2oLG1L9m55WP3bakAvmOr392ulv1+mWCwDAZZzQ4lakDD2BTu0ZaVsvBW+mcKFxYeTq7SyTQMM4lEwFPJ6RLc8jJJ+veJXHekLVzWg4qHRtzNBLz1mA==";
-            Assert.AreEqual(expectedSignatureString, OAuth.SignSignatureBaseString("baseString", Encoding.UTF8, TestUtils.GetTestPrivateKey()));
+            Assert.AreEqual(expectedSignatureString, OAuth.SignSignatureBaseString("baseString", Encoding.UTF8, TestUtils.GetTestSigningKey()));
         }
 
         [TestMethod]

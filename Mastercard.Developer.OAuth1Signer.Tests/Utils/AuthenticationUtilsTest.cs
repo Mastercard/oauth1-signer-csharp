@@ -1,16 +1,14 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Security.Cryptography.X509Certificates;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Mastercard.Developer.OAuth1Signer.Tests.Utils
 {
     [TestClass]
-    [Obsolete("Use AuthenticationUtils instead.")]
-    public class SecurityUtilsTest
+    public class AuthenticationUtilsTest
     {
         [TestMethod]
-        public void TestLoadPrivateKey_ShouldReturnKey()
+        public void TestLoadSigningKey_ShouldReturnKey()
         {
             // GIVEN
             const string keyContainerPath = "./_Resources/test_key_container.p12";
@@ -19,7 +17,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Utils
 
             // WHEN
             const X509KeyStorageFlags flags = X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable; // https://github.com/dotnet/corefx/issues/14745
-            var privateKey = SecurityUtils.LoadPrivateKey(keyContainerPath, keyAlias, keyPassword, flags);
+            var privateKey = AuthenticationUtils.LoadSigningKey(keyContainerPath, keyAlias, keyPassword, flags);
 
             // THEN
             Assert.AreEqual(2048, privateKey.KeySize);

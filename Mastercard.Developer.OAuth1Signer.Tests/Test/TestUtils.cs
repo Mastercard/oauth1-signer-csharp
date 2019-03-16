@@ -6,7 +6,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Test
 {
     internal static class TestUtils
     {
-        internal static RSA GetTestPrivateKey() => SecurityUtils.LoadPrivateKey(
+        internal static RSA GetTestSigningKey() => AuthenticationUtils.LoadSigningKey(
             "./_Resources/test_key_container.p12", 
             "mykeyalias", 
             "Password1",

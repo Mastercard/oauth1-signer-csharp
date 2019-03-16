@@ -13,7 +13,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Authenticators
         public void TestPreAuthenticate_ShouldSignRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestPrivateKey();
+            var signingKey = TestUtils.GetTestSigningKey();
             const string consumerKey = "Some key";
             var baseUri = new Uri("https://api.mastercard.com/");
             var request = new RestRequest
