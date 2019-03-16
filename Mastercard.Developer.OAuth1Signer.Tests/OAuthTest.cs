@@ -173,10 +173,13 @@ namespace Mastercard.Developer.OAuth1Signer.Tests
         }
 
         [TestMethod]
-        public void TestGetNonce_ShouldHaveLengthOf32()
+        public void TestGetNonce_ShouldHaveLengthOf16()
         {
-            var nonce = OAuth.GetNonce();
-            Assert.AreEqual(32, nonce.Length);
+            Enumerable.Range(0, 100000).ToList().ForEach(_ =>
+            {
+                var nonce = OAuth.GetNonce();
+                Assert.AreEqual(16, nonce.Length);
+            });
         }
     }
 }
