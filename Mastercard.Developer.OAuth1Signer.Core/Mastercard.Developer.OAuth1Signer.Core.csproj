@@ -4,6 +4,7 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.2.0</Version>
+    <Product>Mastercard.Developer.OAuth1Signer.Core</Product>
     <Authors>Mastercard</Authors>
     <Company>Mastercard</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -11,6 +12,11 @@
     <PackageReleaseNotes>See: https://github.com/Mastercard/oauth1-signer-csharp/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Mastercard/oauth1-signer-csharp</RepositoryUrl>
     <Description>Zero dependency library for generating a Mastercard API compliant OAuth signature</Description>
+    <!-- See: https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../Identity.snk</AssemblyOriginatorKeyFile>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion> <!-- Frozen -->
+    <FileVersion>1.2.0.0</FileVersion> <!-- Same version as the package version -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +26,7 @@
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-    <_Parameter1>Mastercard.Developer.OAuth1Signer.Tests</_Parameter1>
+    <_Parameter1>Mastercard.Developer.OAuth1Signer.Tests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b50e085c4583209974a6a902505c534b21b205b9e627c583beea690b541d67fdfe8dc53e50c6a0653f0e3e7828d75432a50df4c4b5348ca4e662e42af603cc97636fb2393ef995babf19bc51644c30296a3edf0afd0182cfc21d0c836da5af922e3631a52a2dc5ed2edc8c568f41ff3d41c82fbe27e6bf4fe4df3e50568b65c8</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 
