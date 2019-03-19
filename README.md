@@ -27,7 +27,7 @@ Zero dependency library for generating a Mastercard API compliant OAuth signatur
 This library requires a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 1.3.
 
 #### Strong Naming <a name="strong-naming"></a>
-Assemblies are strong-named as per [Open-source library guidance > Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming).
+Assemblies are strong-named as per [Strong naming and .NET libraries](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming).
 The SN key is available here: [`Identity.snk`](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/Identity.snk).
 
 ### References <a name="references"></a>
