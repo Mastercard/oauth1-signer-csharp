@@ -19,11 +19,12 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
             var request = new RestRequest
             {
                 Method = Method.POST,
-                Resource = "/service",
+                Resource = "/service/{param1}",
                 Parameters =
                 {
-                    new Parameter { Type = ParameterType.QueryString, Name = "param1", Value = "with spaces" },
-                    new Parameter { Type = ParameterType.QueryString, Name = "param2", Value = "encoded#symbol" }
+                    new Parameter { Type = ParameterType.UrlSegment, Name = "param1", Value = "value" },
+                    new Parameter { Type = ParameterType.QueryString, Name = "param2", Value = "with spaces" },
+                    new Parameter { Type = ParameterType.QueryString, Name = "param3", Value = "encoded#symbol" }
                 }
             };
             request.AddJsonBody("{\"foo\":\"bår\"}"); // "application/json; charset=utf-8"

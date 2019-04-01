@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
+// ReSharper disable InconsistentNaming
 
 namespace Mastercard.Developer.OAuth1Signer.Tests.Test
 {
