@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Mastercard.Developer.OAuth1Signer.RestSharp.Signers;
 using Mastercard.Developer.OAuth1Signer.Tests.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,10 +25,10 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
                 {
                     new Parameter { Type = ParameterType.UrlSegment, Name = "param1", Value = "value" },
                     new Parameter { Type = ParameterType.QueryString, Name = "param2", Value = "with spaces" },
-                    new Parameter { Type = ParameterType.QueryString, Name = "param3", Value = "encoded#symbol" }
+                    new Parameter { Type = ParameterType.QueryString, Name = "param3", Value = "encoded#symbol" },
+                    new Parameter { Type = ParameterType.RequestBody, Encoding = Encoding.UTF8, Value = "{\"foo\":\"bår\"}"}
                 }
             };
-            request.AddJsonBody("{\"foo\":\"bår\"}"); // "application/json; charset=utf-8"
 
             // WHEN
             var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
