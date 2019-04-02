@@ -129,9 +129,12 @@ var baseUri = new Uri("https://api.mastercard.com/");
 var request = new RestRequest
 {
     Method = Method.POST,
-    Resource = "/service"
+    Resource = "/service",
+    Parameters =
+    {
+        new Parameter { Type = ParameterType.RequestBody, Encoding = Encoding.UTF8, Value = "{\"foo\":\"bår\"}"} // "application/json; charset=utf-8"
+    }
 };
-request.AddJsonBody("{\"foo\":\"bår\"}"); // "application/json; charset=utf-8"
 var signer = new RestSharpSigner(consumerKey, signingKey);
 signer.Sign(baseUri, request);
 ```
