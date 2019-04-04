@@ -11,6 +11,9 @@ namespace Mastercard.Developer.OAuth1Signer.Core.Utils
     [Obsolete("Use AuthenticationUtils instead.")]
     public static class SecurityUtils
     {
+        /// <summary>
+        /// Load a RSA key out of a PKCS#12 container.
+        /// </summary>
         public static RSA LoadPrivateKey(string pkcs12KeyFilePath, string signingKeyAlias, string signingKeyPassword, 
             X509KeyStorageFlags keyStorageFlags = X509KeyStorageFlags.DefaultKeySet)
         {

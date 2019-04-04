@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
+#pragma warning disable 1591
 
 namespace Mastercard.Developer.OAuth1Signer.Core.Signers
 {
