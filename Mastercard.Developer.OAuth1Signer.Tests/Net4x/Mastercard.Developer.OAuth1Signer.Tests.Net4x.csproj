@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{879DAE6D-71CA-4860-8253-1889597F584F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mastercard.Developer.OAuth1Signer.Tests.Net4x</RootNamespace>
+    <AssemblyName>Mastercard.Developer.OAuth1Signer.Tests.Net4x</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>../../Identity.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\NetCore\Authenticators\RestSharpOAuth1AuthenticatorTest.cs">
+      <Link>Authenticators\RestSharpOAuth1AuthenticatorTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\OAuthTest.cs">
+      <Link>OAuthTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\Signers\NetHttpClientSignerTest.cs">
+      <Link>Signers\NetHttpClientSignerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\Signers\RestSharpSignerTest.cs">
+      <Link>Signers\RestSharpSignerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\Test\TestUtils.cs">
+      <Link>Test\TestUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\Utils\AuthenticationUtilsTest.cs">
+      <Link>Utils\AuthenticationUtilsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore\Utils\SecurityUtilsTest.cs">
+      <Link>Utils\SecurityUtilsTest.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestAdapter">
+      <Version>1.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestFramework">
+      <Version>1.3.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.Core\Mastercard.Developer.OAuth1Signer.Core.csproj">
+      <Project>{de48b59f-51d0-401d-afb8-9fc53e6ded37}</Project>
+      <Name>Mastercard.Developer.OAuth1Signer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj">
+      <Project>{ef0c28d2-674a-4e1b-9a9c-a7241e50ddd7}</Project>
+      <Name>Mastercard.Developer.OAuth1Signer.RestSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\NetCore\_Resources\test_key_container.p12">
+      <Link>_Resources\test_key_container.p12</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -2,7 +2,7 @@
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.Utils
+namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Utils
 {
     [TestClass]
     public class AuthenticationUtilsTest
