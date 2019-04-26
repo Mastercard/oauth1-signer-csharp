@@ -71,8 +71,11 @@ namespace Mastercard.Developer.OAuth1Signer.Core
                 return queryParamCollection;
             }
 
-            var queryParameterString = uri.Substring(beginIndex);
-            var queryParams = queryParameterString.Split('&', '?');
+            var rawQueryString = uri.Substring(beginIndex);
+            var decodedQueryString = Uri.UnescapeDataString(rawQueryString);
+            bool mustEncode = !decodedQueryString.Equals(rawQueryString);
+
+            var queryParams = rawQueryString.Split('&', '?');
             foreach (var queryParam in queryParams)
             {
                 if (string.IsNullOrEmpty(queryParam))
@@ -83,8 +86,8 @@ namespace Mastercard.Developer.OAuth1Signer.Core
                 var separatorIndex = queryParam.IndexOf('=');
                 var key = separatorIndex < 0 ? queryParam : Uri.UnescapeDataString(queryParam.Substring(0, separatorIndex));
                 var value = separatorIndex < 0 ? string.Empty : Uri.UnescapeDataString(queryParam.Substring(separatorIndex + 1));
-                var encodedKey = ToUriRfc3986(key);
-                var encodedValue = ToUriRfc3986(value);
+                var encodedKey = mustEncode ? ToUriRfc3986(key) : key;
+                var encodedValue = mustEncode ? ToUriRfc3986(value) : value;
 
                 if (!queryParamCollection.ContainsKey(encodedKey))
                 {

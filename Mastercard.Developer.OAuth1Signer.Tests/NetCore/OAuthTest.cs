@@ -11,24 +11,99 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore
     public class OAuthTest
     {
         [TestMethod]
-        public void TestExtractQueryParams_ShouldExtractEncodedParams()
-        {
-            var queryParams = OAuth.ExtractQueryParams("https://sandbox.api.mastercard.com?param1=plus+value&param2=colon:value&param3=a space~");
-            Assert.AreEqual(3, queryParams.Count);
-            Assert.IsFalse(new List<string> { "plus%2Bvalue" }.Except(queryParams["param1"]).Any());
-            Assert.IsFalse(new List<string> { "colon%3Avalue" }.Except(queryParams["param2"]).Any());
-            Assert.IsFalse(new List<string> { "a%20space~" }.Except(queryParams["param3"]).Any());
-        }
-
-        [TestMethod]
         public void TestExtractQueryParams_ShouldSupportDuplicateKeysAndEmptyValues()
         {
-            var queryParams = OAuth.ExtractQueryParams("https://sandbox.api.mastercard.com/audiences/v1/getcountries?offset=0&offset=1&length=10&empty&odd=");
+            // GIVEN
+            const string uri = "https://sandbox.api.mastercard.com/audiences/v1/getcountries?offset=0&offset=1&length=10&empty&odd=";
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+
+            // THEN
             Assert.AreEqual(4, queryParams.Count);
             Assert.IsFalse(new List<string> { "10" }.Except(queryParams["length"]).Any());
             Assert.IsFalse(new List<string> { "0", "1" }.Except(queryParams["offset"]).Any());
             Assert.IsFalse(new List<string> { string.Empty }.Except(queryParams["empty"]).Any());
             Assert.IsFalse(new List<string> { string.Empty }.Except(queryParams["odd"]).Any());
+        }
+
+        [TestMethod]
+        public void TestExtractQueryParams_ShouldSupportRfcExample()
+        {
+            // GIVEN
+            const string uri = "https://example.com/request?b5=%3D%253D&a3=a&c%40=&a2=r%20b"; // See: https://tools.ietf.org/html/rfc5849#section-3.4.1.3.1
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+
+            // THEN
+            Assert.AreEqual(4, queryParams.Count);
+            Assert.IsFalse(new List<string> { "%3D%253D" }.Except(queryParams["b5"]).Any());
+            Assert.IsFalse(new List<string> { "a" }.Except(queryParams["a3"]).Any());
+            Assert.IsFalse(new List<string> { string.Empty }.Except(queryParams["c%40"]).Any());
+            Assert.IsFalse(new List<string> { "r%20b" }.Except(queryParams["a2"]).Any());
+        }
+
+        [TestMethod]
+        public void TestExtractQueryParams_ShouldNotEncodeParams_WhenUriStringWithDecodedParams()
+        {
+            // GIVEN
+            const string uri = "https://example.com/request?colon=:&plus=+&comma=,";
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+
+            // THEN
+            Assert.AreEqual(3, queryParams.Count);
+            Assert.IsFalse(new List<string> { ":" }.Except(queryParams["colon"]).Any());
+            Assert.IsFalse(new List<string> { "+" }.Except(queryParams["plus"]).Any());
+            Assert.IsFalse(new List<string> { "," }.Except(queryParams["comma"]).Any());
+        }
+
+        [TestMethod]
+        public void TestExtractQueryParams_ShouldEncodeParams_WhenUriStringWithEncodedParams()
+        {
+            // GIVEN
+            const string uri = "https://example.com/request?colon=%3A&plus=%2B&comma=%2C";
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+
+            // THEN
+            Assert.AreEqual(3, queryParams.Count);
+            Assert.IsFalse(new List<string> { "%3A" }.Except(queryParams["colon"]).Any());
+            Assert.IsFalse(new List<string> { "%2B" }.Except(queryParams["plus"]).Any());
+            Assert.IsFalse(new List<string> { "%2C" }.Except(queryParams["comma"]).Any());
+        }
+
+        [TestMethod]
+        public void TestParameterEncoding_ShouldCreateExpectedSignatureBaseString_WhenQueryParamsEncodedInUri()
+        {
+            // GIVEN
+            const string uri = "https://example.com/?param=token1%3Atoken2";
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+            var paramString = OAuth.GetOAuthParamString(queryParams, new Dictionary<string, string>());
+            var baseString = OAuth.GetSignatureBaseString("https://example.com", "GET", paramString);
+
+            // THEN
+            Assert.AreEqual("GET&https%3A%2F%2Fexample.com&param%3Dtoken1%253Atoken2", baseString);
+        }
+
+        [TestMethod]
+        public void TestParameterEncoding_ShouldCreateExpectedSignatureBaseString_WhenQueryParamsNotEncodedInUri()
+        {
+            // GIVEN
+            const string uri = "https://example.com/?param=token1:token2";
+
+            // WHEN
+            var queryParams = OAuth.ExtractQueryParams(uri);
+            var paramString = OAuth.GetOAuthParamString(queryParams, new Dictionary<string, string>());
+            var baseString = OAuth.GetSignatureBaseString("https://example.com", "GET", paramString);
+
+            // THEN
+            Assert.AreEqual("GET&https%3A%2F%2Fexample.com&param%3Dtoken1%3Atoken2", baseString);
         }
 
         [TestMethod]
