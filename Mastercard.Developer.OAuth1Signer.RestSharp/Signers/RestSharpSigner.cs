@@ -44,9 +44,9 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
             {
                 parameterString
                     .Append(parameterString.Length > 0 ? "&" : string.Empty)
-                    .Append(requestParameter.Name)
+                    .Append(Uri.EscapeDataString(requestParameter.Name))
                     .Append("=")
-                    .Append(requestParameter.Value);
+                    .Append(Uri.EscapeDataString(requestParameter.Value as string));
             }
             if (parameterString.Length > 0)
             {
