@@ -12,7 +12,9 @@ matrix:
       - WITH_SONAR_ANALYSIS=$([ "$TRAVIS_PULL_REQUEST" = "false" ] && echo true || echo false)
       - TEST_RESULTS_PATH=./Mastercard.Developer.OAuth1Signer.Tests/NetCore/bin
   - dotnet: 2.1  # latest available release
-    mono: none  
+    mono: none 
+  - dotnet: 2.2  # latest available release
+    mono: none    
 solution: Mastercard.Developer.OAuth1Signer.sln
 install:
   - dotnet restore
