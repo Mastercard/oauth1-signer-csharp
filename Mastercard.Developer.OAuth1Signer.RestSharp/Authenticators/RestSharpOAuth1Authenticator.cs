@@ -25,13 +25,13 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Authenticators
 
         public Task PreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => Task.Run(() => Signer.Sign(BaseUri, request));
 
+        public Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, ICredentials credentials) => throw new NotImplementedException();
+
         public bool CanPreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => true;
 
         public bool CanPreAuthenticate(IHttpClient client, IHttpRequestMessage request, ICredentials credentials) => false;
 
         public bool CanHandleChallenge(IHttpClient client, IHttpRequestMessage request, ICredentials credentials, IHttpResponseMessage response) => false;
-
-        public Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, ICredentials credentials) => throw new NotImplementedException();
 
         public Task HandleChallenge(IHttpClient client, IHttpRequestMessage request, ICredentials credentials, IHttpResponseMessage response) => throw new NotImplementedException();
 
