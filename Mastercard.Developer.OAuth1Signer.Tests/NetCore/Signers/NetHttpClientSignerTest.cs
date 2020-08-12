@@ -67,7 +67,8 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
             Assert.IsNotNull(request.Headers.Authorization);
         }
 
-        public void TestSign_ShoulThrowArgumentNullException_WhenNullRequest()
+        [TestMethod]
+        public void TestSign_ShouldThrowArgumentNullException_WhenNullRequest()
         {
             Assert.ThrowsException<ArgumentNullException>(() =>
             {
@@ -105,7 +106,8 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
             Assert.IsNotNull(request.Headers.Authorization);
         }
 
-        public void TestSignAsync_ShoulThrowArgumentNullException_WhenNullRequest()
+        [TestMethod]
+        public void TestSignAsync_ShouldThrowArgumentNullException_WhenNullRequest()
         {
             Assert.ThrowsException<ArgumentNullException>(() =>
             {
