@@ -12,24 +12,43 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
     [TestClass]
     public class NetHttpClientSignerTest
     {
+
+        private static NetHttpClientSigner CreateHttpClientSigner()
+        {
+            var signingKey = TestUtils.GetTestSigningKey();
+            const string consumerKey = "Some key";
+            return new NetHttpClientSigner(consumerKey, signingKey);
+        }
+
+        private static HttpRequestMessage CreateTestGetRequest()
+        {
+            return new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://api.mastercard.com/service")
+            };
+        }
+
+        private static HttpRequestMessage CreateTestPostRequest()
+        {
+            return new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.mastercard.com/service"),
+                Content = new StringContent("{\"foo\":\"bår\"}") // "application/json; charset=utf-8"
+            };
+        }
+
         #region Sign
 
         [TestMethod]
         public void TestSign_ShouldAddOAuth1HeaderToPostRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestSigningKey();
-            const string consumerKey = "Some key";
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.mastercard.com/service"),
-                Content = new StringContent("{\"foo\":\"bår\"}") // "application/json; charset=utf-8"
-            };
+            var request = CreateTestPostRequest();
 
             // WHEN
-            var instanceUnderTest = new NetHttpClientSigner(consumerKey, signingKey);
-            instanceUnderTest.Sign(request);
+            CreateHttpClientSigner().Sign(request);
 
             // THEN
             Assert.IsNotNull(request.Headers.Authorization);
@@ -39,20 +58,21 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
         public void TestSign_ShouldAddOAuth1HeaderToGetRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestSigningKey();
-            const string consumerKey = "Some key";
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://api.mastercard.com/service")
-            };
+            var request = CreateTestGetRequest();
 
             // WHEN
-            var instanceUnderTest = new NetHttpClientSigner(consumerKey, signingKey);
-            instanceUnderTest.Sign(request);
+            CreateHttpClientSigner().Sign(request);
 
             // THEN
             Assert.IsNotNull(request.Headers.Authorization);
+        }
+
+        public void TestSign_ShoulThrowArgumentNullException_WhenNullRequest()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                CreateHttpClientSigner().Sign(null);
+            });
         }
 
         #endregion
@@ -63,18 +83,10 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
         public async Task TestSignAsync_ShouldAddOAuth1HeaderToPostRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestSigningKey();
-            const string consumerKey = "Some key";
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.mastercard.com/service"),
-                Content = new StringContent("{\"foo\":\"bår\"}") // "application/json; charset=utf-8"
-            };
+            var request = CreateTestPostRequest();
 
             // WHEN
-            var instanceUnderTest = new NetHttpClientSigner(consumerKey, signingKey);
-            await instanceUnderTest.SignAsync(request);
+            await CreateHttpClientSigner().SignAsync(request);
 
             // THEN
             Assert.IsNotNull(request.Headers.Authorization);
@@ -84,20 +96,21 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
         public async Task TestSignAsync_ShouldAddOAuth1HeaderToGetRequest()
         {
             // GIVEN
-            var signingKey = TestUtils.GetTestSigningKey();
-            const string consumerKey = "Some key";
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://api.mastercard.com/service")
-            };
+            var request = CreateTestGetRequest();
 
             // WHEN
-            var instanceUnderTest = new NetHttpClientSigner(consumerKey, signingKey);
-            await instanceUnderTest.SignAsync(request);
+            await CreateHttpClientSigner().SignAsync(request);
 
             // THEN
             Assert.IsNotNull(request.Headers.Authorization);
+        }
+
+        public void TestSignAsync_ShoulThrowArgumentNullException_WhenNullRequest()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                CreateHttpClientSigner().SignAsync(null);
+            });
         }
 
         #endregion

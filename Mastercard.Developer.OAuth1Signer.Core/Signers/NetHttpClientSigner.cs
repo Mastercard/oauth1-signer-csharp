@@ -24,15 +24,18 @@ namespace Mastercard.Developer.OAuth1Signer.Core.Signers
         public void Sign(HttpRequestMessage request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
-
-            var signTask = this.SignAsync(request);
+            var signTask = SignPrivateAsync(request);
             signTask.Wait();
         }
 
-        public async Task SignAsync(HttpRequestMessage request)
+        public Task SignAsync(HttpRequestMessage request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
+            return SignPrivateAsync(request);
+        }
 
+        private async Task SignPrivateAsync(HttpRequestMessage request)
+        {
             string payload = null;
             var httpContent = request.Content;
             if (httpContent != null)
