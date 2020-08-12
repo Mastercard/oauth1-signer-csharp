@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 #pragma warning disable 1591
 
 namespace Mastercard.Developer.OAuth1Signer.Core.Signers
@@ -24,14 +25,20 @@ namespace Mastercard.Developer.OAuth1Signer.Core.Signers
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
+            var signTask = this.SignAsync(request);
+            signTask.Wait();
+        }
+
+        public async Task SignAsync(HttpRequestMessage request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string payload = null;
             var httpContent = request.Content;
             if (httpContent != null)
             {
                 // Read the body
-                var bodyTask = httpContent.ReadAsStringAsync();
-                bodyTask.Wait();
-                payload = bodyTask.Result;
+                payload = await httpContent.ReadAsStringAsync();
             }
 
             // Generate the header and add it to the request
