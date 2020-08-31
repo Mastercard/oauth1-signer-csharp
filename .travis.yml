@@ -49,6 +49,6 @@ before_script:
     /d:sonar.cs.opencover.reportsPaths="$TEST_RESULTS_PATH/coverage.xml" || echo 'Skipping sonarscanner begin'
 script:
   - dotnet test $TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
-  - dotnet publish -c Release
+  - dotnet publish $TEST_PROJECT -c Release
 after_success:
   - test "$WITH_SONAR_ANALYSIS" = "true" && dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || echo 'Skipping sonarscanner end'
