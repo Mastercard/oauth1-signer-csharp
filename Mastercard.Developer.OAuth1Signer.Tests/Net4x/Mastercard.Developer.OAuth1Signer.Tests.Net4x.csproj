@@ -48,25 +48,25 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\NetCore\Authenticators\RestSharpOAuth1AuthenticatorTest.cs">
+    <Compile Include="..\NetCore2\Authenticators\RestSharpOAuth1AuthenticatorTest.cs">
       <Link>Authenticators\RestSharpOAuth1AuthenticatorTest.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\OAuthTest.cs">
+    <Compile Include="..\NetCore2\OAuthTest.cs">
       <Link>OAuthTest.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\Signers\NetHttpClientSignerTest.cs">
+    <Compile Include="..\NetCore2\Signers\NetHttpClientSignerTest.cs">
       <Link>Signers\NetHttpClientSignerTest.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\Signers\RestSharpSignerTest.cs">
+    <Compile Include="..\NetCore2\Signers\RestSharpSignerTest.cs">
       <Link>Signers\RestSharpSignerTest.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\Test\TestUtils.cs">
+    <Compile Include="..\NetCore2\Test\TestUtils.cs">
       <Link>Test\TestUtils.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\Utils\AuthenticationUtilsTest.cs">
+    <Compile Include="..\NetCore2\Utils\AuthenticationUtilsTest.cs">
       <Link>Utils\AuthenticationUtilsTest.cs</Link>
     </Compile>
-    <Compile Include="..\NetCore\Utils\SecurityUtilsTest.cs">
+    <Compile Include="..\NetCore2\Utils\SecurityUtilsTest.cs">
       <Link>Utils\SecurityUtilsTest.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\NetCore\_Resources\test_key_container.p12">
+    <EmbeddedResource Include="..\NetCore2\_Resources\test_key_container.p12">
       <Link>_Resources\test_key_container.p12</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
