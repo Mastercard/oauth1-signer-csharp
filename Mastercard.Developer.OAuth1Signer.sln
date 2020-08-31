@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastercard.Developer.OAuth1Signer.Tests.Net4x", "Mastercard.Developer.OAuth1Signer.Tests\Net4x\Mastercard.Developer.OAuth1Signer.Tests.Net4x.csproj", "{879DAE6D-71CA-4860-8253-1889597F584F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastercard.Developer.OAuth1Signer.Tests.NetCore3", "Mastercard.Developer.OAuth1Signer.Tests\NetCore3\Mastercard.Developer.OAuth1Signer.Tests.NetCore3.csproj", "{DFFF65A6-0A8F-403B-A811-C0A686B47F91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mastercard.Developer.OAuth1Signer.Tests.NetCore3", "Mastercard.Developer.OAuth1Signer.Tests\NetCore3\Mastercard.Developer.OAuth1Signer.Tests.NetCore3.csproj", "{DFFF65A6-0A8F-403B-A811-C0A686B47F91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F74CBF3-4672-4176-8DB8-60D56809CCE5}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{01423AC1-F9A2-4742-9E15-55DC880748CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A82F452A-3AE0-4ABF-BDD1-CE9A00AAD4C9} = {01423AC1-F9A2-4742-9E15-55DC880748CD}
+		{879DAE6D-71CA-4860-8253-1889597F584F} = {01423AC1-F9A2-4742-9E15-55DC880748CD}
+		{DFFF65A6-0A8F-403B-A811-C0A686B47F91} = {01423AC1-F9A2-4742-9E15-55DC880748CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B80C941C-E5C5-4556-9C7C-EBF28D66C150}
