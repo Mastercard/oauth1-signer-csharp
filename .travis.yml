@@ -35,7 +35,6 @@ matrix:
       - TEST_PROJECT=$NETCORE3_TEST_PROJECT
 solution: Mastercard.Developer.OAuth1Signer.sln
 install:
-  - dotnet restore
   - test "$WITH_SONAR_ANALYSIS" = "true" && dotnet tool install --global dotnet-sonarscanner || echo 'Skipping sonarscanner install'
 before_script:
   - export PATH="$PATH:$HOME/.dotnet/tools"
