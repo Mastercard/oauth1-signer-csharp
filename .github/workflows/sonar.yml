@@ -2,9 +2,12 @@ name: Sonar
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: "0 16 * * *"
 
 jobs:
   build:
@@ -12,10 +15,16 @@ jobs:
             
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.1.700
+    - name: Setup java
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11'
     - name: Test
       env:
         NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
