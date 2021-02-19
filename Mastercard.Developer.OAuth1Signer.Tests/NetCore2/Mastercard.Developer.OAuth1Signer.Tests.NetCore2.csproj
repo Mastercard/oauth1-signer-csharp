@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj" />
+    <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.RestSharpV2\Mastercard.Developer.OAuth1Signer.RestSharpV2.csproj" />
     <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.Core\Mastercard.Developer.OAuth1Signer.Core.csproj" />
   </ItemGroup>
 

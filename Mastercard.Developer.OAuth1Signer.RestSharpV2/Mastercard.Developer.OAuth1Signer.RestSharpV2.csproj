@@ -1,23 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.7</Version>
-    <Product>Mastercard.Developer.OAuth1Signer.RestSharp</Product>
+    <Version>1.0.0</Version>
+    <Product>Mastercard.Developer.OAuth1Signer.RestSharpV2</Product>
     <Authors>Mastercard</Authors>
     <Company>Mastercard</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Mastercard/oauth1-signer-csharp</PackageProjectUrl>
     <PackageReleaseNotes>See: https://github.com/Mastercard/oauth1-signer-csharp/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Mastercard/oauth1-signer-csharp</RepositoryUrl>
-    <Description>RestSharp Portable extension for generating a Mastercard API compliant OAuth signature</Description>
+    <Description>RestSharp extension for generating a Mastercard API compliant OAuth signature</Description>
     <!-- See: https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming -->
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../Identity.snk</AssemblyOriginatorKeyFile>
     <AssemblyVersion>1.0.0.0</AssemblyVersion> <!-- Frozen -->
-    <FileVersion>1.2.7.0</FileVersion> <!-- Same version as the package version -->
-    <DocumentationFile>Mastercard.Developer.OAuth1Signer.RestSharp.xml</DocumentationFile>
+    <FileVersion>1.0.0.0</FileVersion> <!-- Same version as the package version -->
+    <DocumentationFile>Mastercard.Developer.OAuth1Signer.RestSharpV2.xml</DocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.6" /> <!-- Minimum version, inclusive -->
+    <PackageReference Include="RestSharp" Version="106.11.4" /> <!-- Minimum version, inclusive -->
   </ItemGroup>
 
   <ItemGroup>
