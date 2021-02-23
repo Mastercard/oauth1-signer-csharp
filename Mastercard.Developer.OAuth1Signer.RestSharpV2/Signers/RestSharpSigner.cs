@@ -62,12 +62,16 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
             // Read the body
             var bodyParam = request.Parameters.FirstOrDefault(param => param.Type == ParameterType.RequestBody);
             
-            // Serialize the body
-            var payload = bodyParam is null ? string.Empty : request.JsonSerializer.Serialize(bodyParam.Value ?? string.Empty);
-
+            // Serialize the body if required
+            var payload = bodyParam?.Value ?? string.Empty;
+            if (!(payload is string))
+            {
+                payload = request.JsonSerializer.Serialize(payload);
+            }
+            
             // Generate the header and add it to the request
             var methodString = request.Method.ToString();
-            var header = OAuth.GetAuthorizationHeader(fullUri.ToString(), methodString, payload, Encoding, ConsumerKey, SigningKey);
+            var header = OAuth.GetAuthorizationHeader(fullUri.ToString(), methodString, payload.ToString(), Encoding, ConsumerKey, SigningKey);
             request.AddHeader(OAuth.AuthorizationHeaderName, header);
         }
     }
