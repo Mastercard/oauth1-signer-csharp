@@ -10,7 +10,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Authenticators
 {
     /// <inheritdoc />
     /// <summary>
-    /// A RestSharp authenticator for computing and adding an OAuth1 authorization header to HTTP requests.
+    /// A RestSharp Portable authenticator for computing and adding an OAuth1 authorization header to HTTP requests.
     /// </summary>
     public class RestSharpOAuth1Authenticator : IAuthenticator
     {
