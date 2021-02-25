@@ -4,13 +4,14 @@ using System.Security.Cryptography;
 using System.Text;
 using Mastercard.Developer.OAuth1Signer.Core;
 using Mastercard.Developer.OAuth1Signer.Core.Signers;
-using RestSharp.Portable;
+using RestSharp;
+
 #pragma warning disable 1591
 
-namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
+namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
 {
     /// <summary>
-    /// Utility class for signing RestSharp Portable request objects.
+    /// Utility class for signing RestSharp request objects.
     /// </summary>
     public sealed class RestSharpSigner : BaseSigner
     {
@@ -44,9 +45,9 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
             {
                 parameterString
                     .Append(parameterString.Length > 0 ? "&" : string.Empty)
-                    .Append(Uri.EscapeDataString(requestParameter.Name))
+                    .Append(Uri.EscapeDataString(requestParameter.Name ?? throw new InvalidOperationException("Parameter name cannot be null")))
                     .Append("=")
-                    .Append(Uri.EscapeDataString(requestParameter.Value as string));
+                    .Append(Uri.EscapeDataString(requestParameter.Value as string ?? throw new InvalidOperationException("Parameter Value cannot be null")));
             }
             if (parameterString.Length > 0)
             {
@@ -56,16 +57,22 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
             // Fix URL segments
             fullUri = request.Parameters
                 .Where(p => p.Type == ParameterType.UrlSegment)
-                .Aggregate(fullUri, (current, requestParameter) => current.Replace($"{{{requestParameter.Name}}}", requestParameter.Value.ToString()));
+                .Aggregate(fullUri, (current, requestParameter) => current.Replace($"{{{requestParameter.Name}}}", requestParameter.Value?.ToString() ?? string.Empty));
 
             // Read the body
             var bodyParam = request.Parameters.FirstOrDefault(param => param.Type == ParameterType.RequestBody);
-            var payload = bodyParam is null ? string.Empty : bodyParam.Value.ToString();
-
+            
+            // Serialize the body if required
+            var payload = bodyParam?.Value ?? string.Empty;
+            if (!(payload is string))
+            {
+                payload = request.JsonSerializer.Serialize(payload);
+            }
+            
             // Generate the header and add it to the request
             var methodString = request.Method.ToString();
-            var header = OAuth.GetAuthorizationHeader(fullUri.ToString(), methodString, payload, Encoding, ConsumerKey, SigningKey);
-            request.AddOrUpdateHeader(OAuth.AuthorizationHeaderName, header);
+            var header = OAuth.GetAuthorizationHeader(fullUri.ToString(), methodString, payload.ToString(), Encoding, ConsumerKey, SigningKey);
+            request.AddHeader(OAuth.AuthorizationHeaderName, header);
         }
     }
 }

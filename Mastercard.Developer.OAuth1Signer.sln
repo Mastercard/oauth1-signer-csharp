@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{01423AC1-F9A2-4742-9E15-55DC880748CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastercard.Developer.OAuth1Signer.RestSharpV2", "Mastercard.Developer.OAuth1Signer.RestSharpV2\Mastercard.Developer.OAuth1Signer.RestSharpV2.csproj", "{344C0659-8994-4CA8-9792-E003A511A971}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{DFFF65A6-0A8F-403B-A811-C0A686B47F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFFF65A6-0A8F-403B-A811-C0A686B47F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFFF65A6-0A8F-403B-A811-C0A686B47F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344C0659-8994-4CA8-9792-E003A511A971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344C0659-8994-4CA8-9792-E003A511A971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344C0659-8994-4CA8-9792-E003A511A971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344C0659-8994-4CA8-9792-E003A511A971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
