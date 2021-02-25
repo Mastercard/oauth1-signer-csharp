@@ -45,9 +45,9 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
             {
                 parameterString
                     .Append(parameterString.Length > 0 ? "&" : string.Empty)
-                    .Append(Uri.EscapeDataString(requestParameter.Name))
+                    .Append(Uri.EscapeDataString(requestParameter.Name ?? throw new InvalidOperationException("Parameter name cannot be null")))
                     .Append("=")
-                    .Append(Uri.EscapeDataString(requestParameter.Value as string));
+                    .Append(Uri.EscapeDataString(requestParameter.Value as string ?? throw new InvalidOperationException("Parameter Value cannot be null")));
             }
             if (parameterString.Length > 0)
             {

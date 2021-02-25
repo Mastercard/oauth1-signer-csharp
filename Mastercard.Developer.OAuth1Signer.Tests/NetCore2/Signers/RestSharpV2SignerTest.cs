@@ -38,6 +38,54 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
             var authorizationHeaderValue = authorizationHeaders[0].Value as string;
             Assert.IsNotNull(authorizationHeaderValue);
         }
+        
+        [TestMethod]
+        public void TestSign_ShouldAddOAuth1HeaderToGetRequest_WhenParameterNameIsNull()
+        {
+            // GIVEN
+            var signingKey = TestUtils.GetTestSigningKey();
+            const string consumerKey = "Some key";
+            var baseUri = new Uri("https://api.mastercard.com/");
+            var param1 = new Parameter("name", "value", ParameterType.QueryString);
+            param1.Name = null;
+            var request = new RestRequest
+            {
+                Method = Method.GET,
+                Resource = "/service/{param1}",
+                Parameters =
+                {
+                    param1
+                }
+            };
+
+            // WHEN
+            var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
+            Assert.ThrowsException<InvalidOperationException>(() => instanceUnderTest.Sign(baseUri, request));
+        }
+        
+        [TestMethod]
+        public void TestSign_ShouldAddOAuth1HeaderToGetRequest_WhenParameterValueIsNull()
+        {
+            // GIVEN
+            var signingKey = TestUtils.GetTestSigningKey();
+            const string consumerKey = "Some key";
+            var baseUri = new Uri("https://api.mastercard.com/");
+            var param1 = new Parameter("name", "value", ParameterType.QueryString);
+            param1.Value = null;
+            var request = new RestRequest
+            {
+                Method = Method.GET,
+                Resource = "/service/{param1}",
+                Parameters =
+                {
+                    param1
+                }
+            };
+
+            // WHEN
+            var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
+            Assert.ThrowsException<InvalidOperationException>(() => instanceUnderTest.Sign(baseUri, request));
+        }
 
         [TestMethod]
         public void TestSign_ShouldAddOAuth1HeaderToGetRequest()
