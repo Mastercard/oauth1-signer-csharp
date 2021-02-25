@@ -10,7 +10,7 @@ using RestSharp.Portable;
 namespace Mastercard.Developer.OAuth1Signer.RestSharp.Signers
 {
     /// <summary>
-    /// Utility class for signing RestSharp request objects.
+    /// Utility class for signing RestSharp Portable request objects.
     /// </summary>
     public sealed class RestSharpSigner : BaseSigner
     {
