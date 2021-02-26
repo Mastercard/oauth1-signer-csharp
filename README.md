@@ -4,7 +4,8 @@
 [![](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_oauth1-signer-csharp&metric=alert_status)](https://sonarcloud.io/dashboard?id=Mastercard_oauth1-signer-csharp)
 [![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/broken%20links%3F/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3A%22broken+links%3F%22)
 [![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg?label=nuget%20|%20core)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
-[![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharp.svg?label=nuget%20|%20restsharp)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/)
+[![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharp.svg?label=nuget%20|%20restsharp%20portable)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/)
+[![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharpV2.svg?label=nuget%20|%20restsharp)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharpV2/)
 [![](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/Mastercard/oauth1-signer-csharp/blob/master/LICENSE)
 
 ## Table of Contents
@@ -20,12 +21,15 @@
   * [Integrating with OpenAPI Generator API Client Libraries](#integrating-with-openapi-generator-api-client-libraries)
   
 ## Overview <a name="overview"></a>
-Zero dependency library for generating a Mastercard API compliant OAuth signature.  
+* `OAuth1Signer.Core` is a zero dependency library for generating a Mastercard API compliant OAuth signature
+* `OAuth1Signer.RestSharpV2` is an extension dedicated to [RestSharp](https://restsharp.dev/)
+* `OAuth1Signer.RestSharp` is an extension dedicated to [RestSharp Portable](https://github.com/FubarDevelopment/restsharp.portable) (project no longer maintained)
 
 ### Compatibility <a name="compatibility"></a>
 
 #### .NET <a name="net"></a>
-This library requires a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 1.3.
+* `OAuth1Signer.Core` and `OAuth1Signer.RestSharp` require a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 1.3.
+* `OAuth1Signer.RestSharpV2` requires a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0.
 
 #### Strong Naming <a name="strong-naming"></a>
 Assemblies are strong-named as per [Strong naming and .NET libraries](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming).
@@ -44,18 +48,15 @@ As part of this set up, you'll receive credentials for your app:
 * A consumer key (displayed on the Mastercard Developer Portal)
 * A private request signing key (matching the public certificate displayed on the Mastercard Developer Portal)
 
-### Adding the Libraries to Your Project <a name="adding-the-libraries-to-your-project"></a>
-
+### Adding the Libraries to Your Project <a name="adding-the-libraries-to-your-project"></a> 
 #### Package Manager
 ```shell
-Install-Package Mastercard.Developer.OAuth1Signer.Core
-Install-Package Mastercard.Developer.OAuth1Signer.RestSharp
+Install-Package Mastercard.Developer.OAuth1Signer.{Core|RestSharp|RestSharpV2}
 ```
 
 #### .NET CLI
 ```shell
-dotnet add package Mastercard.Developer.OAuth1Signer.Core
-dotnet add package Mastercard.Developer.OAuth1Signer.RestSharp
+dotnet add package Mastercard.Developer.OAuth1Signer.{Core|RestSharp|RestSharpV2}
 ```
 
 ### Loading the Signing Key <a name="loading-the-signing-key"></a>
@@ -69,7 +70,7 @@ var signingKey = AuthenticationUtils.LoadSigningKey(
 ```
 
 ### Creating the OAuth Authorization Header <a name="creating-the-oauth-authorization-header"></a>
-The method that does all the heavy lifting is `OAuth.GetAuthorizationHeader`, in the `Mastercard.Developer.OAuth1Signer.Core` package. 
+The method that does all the heavy lifting is `OAuth.GetAuthorizationHeader`, in the `OAuth1Signer.Core` package. 
 You can call into it directly and as long as you provide the correct parameters, it will return a string that you can add into your request's `Authorization` header.
 
 ```cs
@@ -90,11 +91,11 @@ These classes will modify the provided request object in-place and will add the 
 Usage briefly described below, but you can also refer to the test project for examples. 
 
 + [System.Net.Http.HttpClient](#system-net-http-httpclient)
-+ [RestSharp Portable](#restsharp-portable)
++ [RestSharp](#restsharp)
 
 #### System.Net.Http.HttpClient <a name="system-net-http-httpclient"></a>
 
-The `NetHttpClientSigner` class is located in the `Mastercard.Developer.OAuth1Signer.Core` package. 
+The `NetHttpClientSigner` class is located in the `OAuth1Signer.Core` package. 
 
 Usage:
 ```cs
@@ -120,9 +121,9 @@ internal class RequestSignerHandler : HttpClientHandler
 }
 ```
 
-#### RestSharp Portable <a name="restsharp-portable"></a>
+#### RestSharp <a name="restsharp"></a>
 
-The `RestSharpSigner` class is located in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
+A `RestSharpSigner` class is provided for both RestSharp and RestSharp Portable. It can be found in the `OAuth1Signer.RestSharp` and `OAuth1Signer.RestSharpV2` packages.
 
 Usage:
 ```cs
@@ -148,20 +149,67 @@ It provides generators and library templates for supporting multiple languages a
 This project provides you with some authenticator classes you can use when configuring your API client. These classes will take care of adding the correct `Authorization` header before sending the request.
 
 Generators currently supported:
-+ [csharp (targetFramework v5.0)](#csharp-generator-target-framework-v5)
++ [csharp-netcore](#csharp-netcore-generator)
++ [csharp (deprecated)](#csharp-generator)
 
-#### csharp (targetFramework v5.0) <a name="csharp-generator-target-framework-v5"></a>
+
+#### csharp-netcore<a name="csharp-netcore-generator-target-framework-netcore2.0"></a>
 
 ##### OpenAPI Generator
 
 Client libraries can be generated using the following command:
 ```shell
-java -jar openapi-generator-cli.jar generate -i openapi-spec.yaml -g csharp -c config.json -o out
+openapi-generator-cli generate -i openapi-spec.yaml -g csharp-netcore -c config.json -o out
 ```
 config.json:
 ```json
-{ "targetFramework": "v5.0" }
+{ "targetFramework": "netstandard2.0" }
 ```
+
+See also:
+* [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
+* [CONFIG OPTIONS for csharp-netcore](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp-netcore.md)
+
+##### Usage of the `RestSharpSigner`
+
+`RestSharpSigner` is located in the `OAuth1Signer.RestSharpV2` package.
+
+##### Usage
+
+Create a new file (for instance, `ApiClientInterceptor.cs`) extending the definition of the generated `ApiClient` class:
+
+```cs
+partial class ApiClient
+{
+    private const string ConsumerKey = "<Your-Consumer-Key>";
+    private const string SigningKeyAlias = "<Your-Key-Alias>";
+    private const string SigningKeyPassword = "<Your-Keystore-Password>";
+    private const string SigningKeyPkcs12FilePath = "<path/to/your/p12>";
+    private const string BaseServicePath = "https://api.mastercard.com/<service-path>";
+    
+    partial void InterceptRequest(IRestRequest request)
+    {
+        var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
+        var signer = new RestSharpSigner(ConsumerKey, signingKey);
+        signer.Sign(new Uri(BaseServicePath), request);
+    }
+}
+```
+
+#### csharp (deprecated)<a name="csharp-generator"></a>
+
+##### OpenAPI Generator
+
+Client libraries can be generated using the following command:
+```shell
+openapi-generator-cli generate -i openapi-spec.yaml -g csharp -c config.json -o out
+```
+config.json:
+```json
+{ "targetFramework": "netstandard1.3" }
+```
+
+⚠️ `v5.0` was used for `targetFramework` in OpenAPI Generator versions prior 5.0.0.
 
 See also: 
 * [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
@@ -169,7 +217,7 @@ See also:
 
 ##### Usage of the `RestSharpOAuth1Authenticator`
 
-`RestSharpOAuth1Authenticator` is located in the `Mastercard.Developer.OAuth1Signer.RestSharp` package. 
+`RestSharpOAuth1Authenticator` is located in the `OAuth1Signer.RestSharp` package. 
 
 ```cs
 var config = Configuration.Default;
