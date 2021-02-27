@@ -153,7 +153,7 @@ Generators currently supported:
 + [csharp (deprecated)](#csharp-generator)
 
 
-#### csharp-netcore<a name="csharp-netcore-generator-target-framework-netcore2.0"></a>
+#### csharp-netcore<a name="csharp-netcore-generator"></a>
 
 ##### OpenAPI Generator
 
