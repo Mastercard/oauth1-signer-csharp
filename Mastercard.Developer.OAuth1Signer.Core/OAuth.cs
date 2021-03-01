@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
@@ -14,7 +13,7 @@ namespace Mastercard.Developer.OAuth1Signer.Core
     public static class OAuth
     {
         public const string AuthorizationHeaderName = "Authorization";
-        private static readonly Random Random = new Random();
+        private static readonly RandomNumberGenerator Random = RandomNumberGenerator.Create();
 
         /// <summary>
         /// Creates a Mastercard API compliant OAuth Authorization header.
@@ -217,7 +216,12 @@ namespace Mastercard.Developer.OAuth1Signer.Core
         /// <summary>
         /// Generates a 16 char random string for replay protection as per https://tools.ietf.org/html/rfc5849#section-3.3.
         /// </summary>
-        internal static string GetNonce() => string.Concat(Enumerable.Range(0, 16).Select(_ => Random.Next(16).ToString("x")));
+        internal static string GetNonce()
+        {
+            var data = new byte[8];
+            Random.GetBytes(data);
+            return BitConverter.ToString(data).Replace("-", string.Empty).ToLower();
+        }
 
         /// <summary>
         /// Returns UNIX Timestamp as required per https://tools.ietf.org/html/rfc5849#section-3.3.
