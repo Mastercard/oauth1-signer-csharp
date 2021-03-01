@@ -181,19 +181,25 @@ Create a new file (for instance, `ApiClientInterceptor.cs`) extending the defini
 ```cs
 partial class ApiClient
 {
-    private const string ConsumerKey = "<Your-Consumer-Key>";
-    private const string SigningKeyAlias = "<Your-Key-Alias>";
-    private const string SigningKeyPassword = "<Your-Keystore-Password>";
-    private const string SigningKeyPkcs12FilePath = "<path/to/your/p12>";
-    private const string BaseServicePath = "https://api.mastercard.com/<service-path>";
+    private Uri BasePath { get; }
+    private RestSharpSigner Signer { get; }
     
-    partial void InterceptRequest(IRestRequest request)
+    public ApiClient(RSA signingKey, string basePath, string consumerKey)
     {
-        var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
-        var signer = new RestSharpSigner(ConsumerKey, signingKey);
-        signer.Sign(new Uri(BaseServicePath), request);
+        this._baseUrl = basePath;
+        this.BasePath = new Uri(basePath);
+        this.Signer = new RestSharpSigner(consumerKey, signingKey);
     }
+
+    partial void InterceptRequest(IRestRequest request) => Signer.Sign(this.BasePath, request);
 }
+```
+
+Configure your `ApiClient` instance the following way:
+```cs
+var serviceApi = new ServiceApi();
+serviceApi.Client = new ApiClient(SigningKey, BasePath, ConsumerKey);
+// ...
 ```
 
 #### csharp (deprecated)<a name="csharp-generator"></a>
