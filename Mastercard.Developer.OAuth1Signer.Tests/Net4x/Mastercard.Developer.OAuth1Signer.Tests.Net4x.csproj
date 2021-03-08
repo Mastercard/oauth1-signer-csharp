@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mastercard.Developer.OAuth1Signer.Tests.Net4x</RootNamespace>
     <AssemblyName>Mastercard.Developer.OAuth1Signer.Tests.Net4x</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -51,6 +51,9 @@
     <Compile Include="..\NetCore2\Authenticators\RestSharpOAuth1AuthenticatorTest.cs">
       <Link>Authenticators\RestSharpOAuth1AuthenticatorTest.cs</Link>
     </Compile>
+    <Compile Include="..\NetCore2\Authenticators\RestSharpV2OAuth1AuthenticatorTest.cs">
+      <Link>Authenticators\RestSharpV2OAuth1AuthenticatorTest.cs</Link>
+    </Compile>
     <Compile Include="..\NetCore2\OAuthTest.cs">
       <Link>OAuthTest.cs</Link>
     </Compile>
@@ -59,6 +62,9 @@
     </Compile>
     <Compile Include="..\NetCore2\Signers\RestSharpSignerTest.cs">
       <Link>Signers\RestSharpSignerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NetCore2\Signers\RestSharpV2SignerTest.cs">
+      <Link>Signers\RestSharpV2SignerTest.cs</Link>
     </Compile>
     <Compile Include="..\NetCore2\Test\TestUtils.cs">
       <Link>Test\TestUtils.cs</Link>
@@ -72,6 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>2.1.2</Version>
     </PackageReference>
@@ -83,6 +92,10 @@
     <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.Core\Mastercard.Developer.OAuth1Signer.Core.csproj">
       <Project>{de48b59f-51d0-401d-afb8-9fc53e6ded37}</Project>
       <Name>Mastercard.Developer.OAuth1Signer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.RestSharpV2\Mastercard.Developer.OAuth1Signer.RestSharpV2.csproj">
+      <Project>{344c0659-8994-4ca8-9792-e003a511a971}</Project>
+      <Name>Mastercard.Developer.OAuth1Signer.RestSharpV2</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Mastercard.Developer.OAuth1Signer.RestSharp\Mastercard.Developer.OAuth1Signer.RestSharp.csproj">
       <Project>{ef0c28d2-674a-4e1b-9a9c-a7241e50ddd7}</Project>

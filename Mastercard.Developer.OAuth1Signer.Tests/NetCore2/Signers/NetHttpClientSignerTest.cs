@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-
 using Mastercard.Developer.OAuth1Signer.Core.Signers;
-using Mastercard.Developer.OAuth1Signer.Tests.NetCore.Test;
-
+using Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Signers
+namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
 {
     [TestClass]
     public class NetHttpClientSignerTest

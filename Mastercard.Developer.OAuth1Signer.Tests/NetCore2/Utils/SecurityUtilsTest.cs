@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore.Utils
+namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Utils
 {
     [TestClass]
     [Obsolete("Use AuthenticationUtils instead.")]
