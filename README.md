@@ -22,9 +22,9 @@
   * [Integrating with OpenAPI Generator API Client Libraries](#integrating-with-openapi-generator-api-client-libraries)
   
 ## Overview <a name="overview"></a>
-* `OAuth1Signer.Core` is a zero dependency library for generating a Mastercard API compliant OAuth signature
-* `OAuth1Signer.RestSharpV2` is an extension dedicated to [RestSharp](https://restsharp.dev/)
-* `OAuth1Signer.RestSharp` is an extension dedicated to [RestSharp Portable](https://github.com/FubarDevelopment/restsharp.portable) (project no longer maintained)
+* [`OAuth1Signer.Core`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/) is a zero dependency library for generating a Mastercard API compliant OAuth signature
+* [`OAuth1Signer.RestSharpV2`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharpV2/) is an extension dedicated to [RestSharp](https://restsharp.dev/)
+* [`OAuth1Signer.RestSharp`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/) is an extension dedicated to [RestSharp Portable](https://github.com/FubarDevelopment/restsharp.portable) (project no longer maintained)
 
 ### Compatibility <a name="compatibility"></a>
 
@@ -71,7 +71,7 @@ var signingKey = AuthenticationUtils.LoadSigningKey(
 ```
 
 ### Creating the OAuth Authorization Header <a name="creating-the-oauth-authorization-header"></a>
-The method that does all the heavy lifting is `OAuth.GetAuthorizationHeader`, in the `OAuth1Signer.Core` package. 
+The method that does all the heavy lifting is `OAuth.GetAuthorizationHeader`, in the [`OAuth1Signer.Core`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/) package. 
 You can call into it directly and as long as you provide the correct parameters, it will return a string that you can add into your request's `Authorization` header.
 
 ```cs
@@ -96,7 +96,7 @@ Usage briefly described below, but you can also refer to the test project for ex
 
 #### System.Net.Http.HttpClient <a name="system-net-http-httpclient"></a>
 
-The `NetHttpClientSigner` class is located in the `OAuth1Signer.Core` package. 
+The `NetHttpClientSigner` class is located in the [`OAuth1Signer.Core`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/) package. 
 
 Usage:
 ```cs
@@ -124,7 +124,7 @@ internal class RequestSignerHandler : HttpClientHandler
 
 #### RestSharp <a name="restsharp"></a>
 
-A `RestSharpSigner` class is provided for both RestSharp and RestSharp Portable. It can be found in the `OAuth1Signer.RestSharp` and `OAuth1Signer.RestSharpV2` packages.
+A `RestSharpSigner` class is provided for both RestSharp and RestSharp Portable. It can be found in the [`OAuth1Signer.RestSharp`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/) and [`OAuth1Signer.RestSharpV2`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharpV2/) packages.
 
 Usage:
 ```cs
@@ -173,7 +173,7 @@ See also:
 
 ##### Usage of the `RestSharpSigner`
 
-`RestSharpSigner` is located in the `OAuth1Signer.RestSharpV2` package.
+`RestSharpSigner` is located in the [`OAuth1Signer.RestSharpV2`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharpV2/) package.
 
 ##### Usage
 
@@ -224,7 +224,7 @@ See also:
 
 ##### Usage of the `RestSharpOAuth1Authenticator`
 
-`RestSharpOAuth1Authenticator` is located in the `OAuth1Signer.RestSharp` package. 
+`RestSharpOAuth1Authenticator` is located in the [`OAuth1Signer.RestSharp`](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/) package. 
 
 ```cs
 var config = Configuration.Default;
