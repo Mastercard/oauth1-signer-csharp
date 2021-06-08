@@ -47,7 +47,8 @@ namespace Mastercard.Developer.OAuth1Signer.Core.Signers
             // Generate the header and add it to the request
             var methodString = request.Method.ToString();
             var header = OAuth.GetAuthorizationHeader(request.RequestUri.AbsoluteUri, methodString, payload, Encoding, ConsumerKey, SigningKey);
-            request.Headers.Authorization = new AuthenticationHeaderValue("OAuth", header.Replace("OAuth", string.Empty));
+            var parameter = header.Substring(6, header.Length - 6); // Remove the "OAuth" scheme
+            request.Headers.Authorization = new AuthenticationHeaderValue("OAuth", parameter);
         }
     }
 }

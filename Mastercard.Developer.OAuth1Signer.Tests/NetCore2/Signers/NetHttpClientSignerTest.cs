@@ -114,5 +114,24 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
         }
 
         #endregion
+
+        [TestMethod]
+        public void TestSign_ShouldNotRemoveOAuthSubstringFromBodyDigests()
+        {
+            // GIVEN
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.mastercard.com/service"),
+                Content = new StringContent("{ \"uuid\": \"e8b57e13-a771-4d49-9419-4d1168b0a684\" }") // The SHA-256 digest is "ugxcxkGBiQwu5kGnpvKgrbkOAuthLE+qtCXBDeZ/D/I="
+            };
+
+            // WHEN
+            CreateHttpClientSigner().Sign(request);
+
+            // THEN
+            Assert.AreEqual("OAuth", request.Headers.Authorization.Scheme);
+            Assert.IsTrue(request.Headers.Authorization.Parameter.Contains("bkOAuthLE"));
+        }
     }
 }
