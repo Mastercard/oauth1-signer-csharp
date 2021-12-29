@@ -8,6 +8,8 @@ name: Build & Test
       - opened
       - synchronize
       - reopened
+  schedule:
+    - cron: 0 16 * * *
 jobs:
   build:
     env:
