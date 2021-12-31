@@ -29,8 +29,10 @@
 ### Compatibility <a name="compatibility"></a>
 
 #### .NET <a name="net"></a>
-* `OAuth1Signer.Core` and `OAuth1Signer.RestSharp` require a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 1.3.
-* `OAuth1Signer.RestSharpV2` requires a .NET Framework implementing [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0.
+* `OAuth1Signer.Core` and `OAuth1Signer.RestSharp` target .NET Standard 1.3
+* `OAuth1Signer.RestSharpV2` targets .NET Standard 2.0
+
+.NET Standard versions supported by .NET implementations can be found in the following articles: [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard), [.NET Standard versions](https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions).
 
 #### Strong Naming <a name="strong-naming"></a>
 Assemblies are strong-named as per [Strong naming and .NET libraries](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/strong-naming).
@@ -103,7 +105,7 @@ Usage:
 var baseUri = new Uri("https://api.mastercard.com/");
 var httpClient = new HttpClient(new RequestSignerHandler(consumerKey, signingKey)) { BaseAddress = baseUri };
 var postTask = httpClient.PostAsync(new Uri("/service", UriKind.Relative), new StringContent("{\"foo\":\"bår\"}");
-// (...)
+// (…)
 
 internal class RequestSignerHandler : HttpClientHandler
 {
@@ -164,11 +166,11 @@ openapi-generator-cli generate -i openapi-spec.yaml -g csharp-netcore -c config.
 ```
 config.json:
 ```json
-{ "targetFramework": "netstandard2.0" }
+{ "targetFramework": "netstandard2.1" }
 ```
 
 See also:
-* [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
+* [OpenAPI Generator CLI Installation](https://openapi-generator.tech/docs/installation)
 * [Config Options for csharp-netcore](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp-netcore.md)
 
 ##### Usage of the `RestSharpSigner`
@@ -177,30 +179,36 @@ See also:
 
 ##### Usage
 
-Create a new file (for instance, `ApiClientInterceptor.cs`) extending the definition of the generated `ApiClient` class:
+Create a new file (for instance, `MastercardApiClient.cs`) extending the definition of the generated `ApiClient` class:
 
 ```cs
 partial class ApiClient
 {
-    private Uri BasePath { get; }
-    private RestSharpSigner Signer { get; }
-    
+    private readonly Uri _basePath;
+    private readonly RestSharpSigner _signer;
+
+    /// <summary>
+    /// Construct an ApiClient which will automatically sign requests
+    /// </summary>
     public ApiClient(RSA signingKey, string basePath, string consumerKey)
     {
-        this._baseUrl = basePath;
-        this.BasePath = new Uri(basePath);
-        this.Signer = new RestSharpSigner(consumerKey, signingKey);
+        _baseUrl = basePath;
+        _basePath = new Uri(basePath);
+        _signer = new RestSharpSigner(consumerKey, signingKey);
     }
 
-    partial void InterceptRequest(IRestRequest request) => Signer.Sign(this.BasePath, request);
+    partial void InterceptRequest(IRestRequest request)
+    {
+        _signer.Sign(_basePath, request);
+    }
 }
 ```
 
 Configure your `ApiClient` instance the following way:
 ```cs
-var serviceApi = new ServiceApi();
-serviceApi.Client = new ApiClient(SigningKey, BasePath, ConsumerKey);
-// ...
+var client = new ApiClient(SigningKey, BasePath, ConsumerKey);
+var serviceApi = new ServiceApi() { Client = client };
+// …
 ```
 
 #### csharp (deprecated)<a name="csharp-generator"></a>
@@ -219,7 +227,7 @@ config.json:
 ⚠️ `v5.0` was used for `targetFramework` in OpenAPI Generator versions prior 5.0.0.
 
 See also: 
-* [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
+* [OpenAPI Generator CLI Installation](https://openapi-generator.tech/docs/installation)
 * [Config Options for csharp](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/csharp.md)
 
 ##### Usage of the `RestSharpOAuth1Authenticator`
@@ -231,5 +239,5 @@ var config = Configuration.Default;
 config.BasePath = "https://sandbox.api.mastercard.com";
 config.ApiClient.RestClient.Authenticator = new RestSharpOAuth1Authenticator(ConsumerKey, signingKey, new Uri(config.BasePath));
 var serviceApi = new ServiceApi(config);
-// ...
+// …
 ```
