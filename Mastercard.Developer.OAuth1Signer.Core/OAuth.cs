@@ -112,7 +112,7 @@ namespace Mastercard.Developer.OAuth1Signer.Core
             var sortedParameters = new SortedDictionary<string, List<string>>(queryParameters, StringComparer.Ordinal);
             foreach (var oauthParameter in oauthParameters)
             {
-                sortedParameters[oauthParameter.Key] = new List<string> { oauthParameter.Value };
+                sortedParameters[ToUriRfc3986(oauthParameter.Key)] = new List<string> { ToUriRfc3986(oauthParameter.Value) };
             }
 
             // Build the OAuth parameter string 

@@ -256,5 +256,28 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2
                 Assert.AreEqual(16, nonce.Length);
             });
         }
+
+        [TestMethod]
+        public void TestGetOAuthParamString_ShouldPercentEncodeOAuthParameters()
+        {
+            // This supports `Appendix A.1. Example PUT Request` from https://tools.ietf.org/id/draft-eaton-oauth-bodyhash-00.html#parameter
+            // per 3.4.1.3.2.  Parameters Normalization from https://datatracker.ietf.org/doc/html/rfc5849#section-3.4.1.3.2
+            const string method = "PUT";
+            var queryParameters = new Dictionary<string, List<string>>();
+            var oauthParameters = new Dictionary<string, string>
+            {
+                { "oauth_body_hash", "Lve95gjOVATpfV8EL5X4nxwjKHE=" },
+                { "oauth_consumer_key", "consumer" },
+                { "oauth_nonce", "10369470270925" },
+                { "oauth_signature_method", "HMAC-SHA1" },
+                { "oauth_timestamp", "1236874236" },
+                { "oauth_token", "token" },
+                { "oauth_version", "1.0" }
+            };
+            var oauthParamString = OAuth.GetOAuthParamString(queryParameters, oauthParameters);
+            var actualSignatureBaseString = OAuth.GetSignatureBaseString("http://www.example.com/resource", method, oauthParamString);
+            const string expectedSignatureBaseString = "PUT&http%3A%2F%2Fwww.example.com%2Fresource&oauth_body_hash%3DLve95gjOVATpfV8EL5X4nxwjKHE%253D%26oauth_consumer_key%3Dconsumer%26oauth_nonce%3D10369470270925%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1236874236%26oauth_token%3Dtoken%26oauth_version%3D1.0";
+            Assert.AreEqual(expectedSignatureBaseString, actualSignatureBaseString);
+        }
     }
 }
