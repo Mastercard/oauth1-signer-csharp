@@ -204,7 +204,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2
             };
             var oauthParamString = OAuth.GetOAuthParamString(queryParameters, oauthParameters);
             var actualSignatureBaseString = OAuth.GetSignatureBaseString("https://api.mastercard.com", method, oauthParamString);
-            const string expectedSignatureBaseString = "POST&https%3A%2F%2Fapi.mastercard.com&first_param%3Dothervalue%26first_param%3Dvalue%26oauth_body_hash%3Dbody%2Fhash%26oauth_nonce%3Drandomnonce%26param2%3Dhello";
+            const string expectedSignatureBaseString = "POST&https%3A%2F%2Fapi.mastercard.com&first_param%3Dothervalue%26first_param%3Dvalue%26oauth_body_hash%3Dbody%252Fhash%26oauth_nonce%3Drandomnonce%26param2%3Dhello";
             Assert.AreEqual(expectedSignatureBaseString, actualSignatureBaseString);
         }
 
@@ -234,7 +234,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2
             };
             var oauthParamString = OAuth.GetOAuthParamString(queryParameters, oauthParameters);
             var actualSignatureBaseString = OAuth.GetSignatureBaseString(OAuth.GetBaseUriString(uri), method, oauthParamString);
-            const string expectedSignatureBaseString = "POST&https%3A%2F%2Fsandbox.api.mastercard.com%2Ffraud%2Fmerchant%2Fv1%2Ftermination-inquiry&Format%3DXML%26PageLength%3D10%26PageOffset%3D0%26oauth_body_hash%3Dh2Pd7zlzEZjZVIKB4j94UZn%2FxxoR3RoCjYQ9%2FJdadGQ%3D%26oauth_consumer_key%3Dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx%26oauth_nonce%3D1111111111111111111%26oauth_signature_method%3DRSA-SHA256%26oauth_timestamp%3D1111111111%26oauth_version%3D1.0";
+            const string expectedSignatureBaseString = "POST&https%3A%2F%2Fsandbox.api.mastercard.com%2Ffraud%2Fmerchant%2Fv1%2Ftermination-inquiry&Format%3DXML%26PageLength%3D10%26PageOffset%3D0%26oauth_body_hash%3Dh2Pd7zlzEZjZVIKB4j94UZn%252FxxoR3RoCjYQ9%252FJdadGQ%253D%26oauth_consumer_key%3Dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx%26oauth_nonce%3D1111111111111111111%26oauth_signature_method%3DRSA-SHA256%26oauth_timestamp%3D1111111111%26oauth_version%3D1.0";
             Assert.AreEqual(expectedSignatureBaseString, actualSignatureBaseString);
         }
 
