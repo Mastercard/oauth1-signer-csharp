@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="106.11.4" /> <!-- Minimum version, inclusive -->
+    <PackageReference Include="RestSharp" Version="106.12.0" /> <!-- Minimum version, inclusive -->
   </ItemGroup>
 
   <ItemGroup>
