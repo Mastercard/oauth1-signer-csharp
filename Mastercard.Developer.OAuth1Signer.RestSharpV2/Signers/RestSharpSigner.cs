@@ -57,7 +57,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
             // Fix URL segments
             fullUri = request.Parameters
                 .Where(p => p.Type == ParameterType.UrlSegment)
-                .Aggregate(fullUri, (current, requestParameter) => current.Replace($"{{{requestParameter.Name}}}", requestParameter.Value?.ToString() ?? string.Empty));
+                .Aggregate(fullUri, (current, requestParameter) => current.Replace($"{{{requestParameter.Name}}}", Uri.EscapeDataString(requestParameter.Value?.ToString()) ?? string.Empty));
 
             // Read the body
             var bodyParam = request.Parameters.FirstOrDefault(param => param.Type == ParameterType.RequestBody);

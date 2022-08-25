@@ -62,5 +62,32 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
             var authorizationHeaderValue = authorizationHeaders[0].Value as string;
             Assert.IsNotNull(authorizationHeaderValue);
         }
+
+        [TestMethod]
+        public void TestSign_ShouldAddOAuthHeaderWhenUrlSegmentParamHasSpecialChars()
+        {
+            // GIVEN
+            var signingKey = TestUtils.GetTestSigningKey();
+            const string consumerKey = "Some key";
+            var baseUri = new Uri("https://api.mastercard.com/");
+            var request = new RestRequest
+            {
+                Method = Method.GET,
+                Resource = "/service/{param1}",
+                Parameters =
+                {
+                     new Parameter { Type = ParameterType.UrlSegment, Name = "param1", Value = "matest.buyer5.pay@track" }
+                }
+            };
+
+            // WHEN
+            var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
+            instanceUnderTest.Sign(baseUri, request);
+
+            // THEN
+            var authorizationHeaders = request.Parameters.Find(ParameterType.HttpHeader, "Authorization");
+            var authorizationHeaderValue = authorizationHeaders[0].Value as string;
+            Assert.IsNotNull(authorizationHeaderValue);
+        }
     }
 }
