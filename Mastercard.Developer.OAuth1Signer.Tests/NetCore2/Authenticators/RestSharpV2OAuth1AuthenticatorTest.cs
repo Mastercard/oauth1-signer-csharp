@@ -18,7 +18,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Authenticators
             var baseUri = new Uri("https://api.mastercard.com/");
             var request = new RestRequest
             {
-                Method = Method.GET,
+                Method = Method.Get,
                 Resource = "/service"
             };
 
@@ -28,8 +28,8 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Authenticators
             task.Wait();
 
             // THEN
-            var authorizationHeaders = request.Parameters.FindAll(param => param.Name == "Authorization" && param.Type == ParameterType.HttpHeader);
-            Assert.AreEqual(1, authorizationHeaders.Count);
+            var authorizationHeader = request.Parameters.TryFind("Authorization");
+            Assert.IsNotNull(authorizationHeader);
         }
     }
 }

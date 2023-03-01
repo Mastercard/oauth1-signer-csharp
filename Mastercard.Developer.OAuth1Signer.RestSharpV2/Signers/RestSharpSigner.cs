@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using Mastercard.Developer.OAuth1Signer.Core;
 using Mastercard.Developer.OAuth1Signer.Core.Signers;
 using RestSharp;
@@ -23,7 +24,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
         {
         }
 
-        public void Sign(Uri baseUri, IRestRequest request)
+        public void Sign(Uri baseUri, RestRequest request)
         {
             if (baseUri == null) throw new ArgumentNullException(nameof(baseUri));
             if (request == null) throw new ArgumentNullException(nameof(request));
@@ -66,7 +67,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
             var payload = bodyParam?.Value ?? string.Empty;
             if (!(payload is string))
             {
-                payload = request.JsonSerializer.Serialize(payload);
+                payload = JsonSerializer.Serialize(payload);
             }
             
             // Generate the header and add it to the request
