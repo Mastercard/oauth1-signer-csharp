@@ -38,25 +38,6 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
         }
         
         [TestMethod]
-        public void TestSign_ShouldAddOAuth1HeaderToGetRequest_WhenParameterNameIsNull()
-        {
-            // GIVEN
-            var signingKey = TestUtils.GetTestSigningKey();
-            const string consumerKey = "Some key";
-            var baseUri = new Uri("https://api.mastercard.com/");
-            var request = new RestRequest
-            {
-                Method = Method.Get,
-                Resource = "/service/{param1}"
-            };
-            request.AddQueryParameter(null, "value");
-
-            // WHEN
-            var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
-            Assert.ThrowsException<InvalidOperationException>(() => instanceUnderTest.Sign(baseUri, request));
-        }
-        
-        [TestMethod]
         public void TestSign_ShouldAddOAuth1HeaderToGetRequest_WhenParameterValueIsNull()
         {
             // GIVEN
@@ -69,7 +50,7 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
                 Resource = "/service/{param1}"
             };
 
-            request.AddQueryParameter("name", "value");
+            request.AddQueryParameter("name", null);
 
             // WHEN
             var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);
