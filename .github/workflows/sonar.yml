@@ -33,7 +33,7 @@ jobs:
       - name: Test
         env:
           NETCORE5_TEST_PROJECT: >-
-            Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.Net5.csproj
+            Mastercard.Developer.OAuth1Signer.Tests/Net5/Mastercard.Developer.OAuth1Signer.Tests.Net5.csproj
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'
         run: >
@@ -56,6 +56,6 @@ jobs:
           /p:CoverletOutputFormat="opencover"
           /p:CoverletOutput="bin/coverage.xml"
 
-          dotnet publish $NETCORE2_TEST_PROJECT -c Release
+          dotnet publish $NETCORE5_TEST_PROJECT -c Release
 
           dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
