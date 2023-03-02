@@ -197,7 +197,7 @@ partial class ApiClient
         _signer = new RestSharpSigner(consumerKey, signingKey);
     }
 
-    partial void InterceptRequest(IRestRequest request)
+    partial void InterceptRequest(RestRequest request)
     {
         _signer.Sign(_basePath, request);
     }
