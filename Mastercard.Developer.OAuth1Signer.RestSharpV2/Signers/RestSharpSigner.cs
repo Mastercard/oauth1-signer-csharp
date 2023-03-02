@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using Mastercard.Developer.OAuth1Signer.Core;
 using Mastercard.Developer.OAuth1Signer.Core.Signers;
 using RestSharp;
@@ -23,7 +24,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
         {
         }
 
-        public void Sign(Uri baseUri, IRestRequest request)
+        public void Sign(Uri baseUri, RestRequest request)
         {
             if (baseUri == null) throw new ArgumentNullException(nameof(baseUri));
             if (request == null) throw new ArgumentNullException(nameof(request));
@@ -41,7 +42,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
 
             // Add query params
             var parameterString = new StringBuilder();
-            foreach (var requestParameter in request.Parameters.Where(p => p.Type == ParameterType.QueryString))
+            foreach (var requestParameter in request.Parameters.Where(p => p is QueryParameter))
             {
                 parameterString
                     .Append(parameterString.Length > 0 ? "&" : string.Empty)
@@ -56,17 +57,17 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
 
             // Fix URL segments
             fullUri = request.Parameters
-                .Where(p => p.Type == ParameterType.UrlSegment)
+                .Where(p => p is UrlSegmentParameter)
                 .Aggregate(fullUri, (current, requestParameter) => current.Replace($"{{{requestParameter.Name}}}", Uri.EscapeDataString(requestParameter.Value?.ToString()) ?? string.Empty));
 
             // Read the body
-            var bodyParam = request.Parameters.FirstOrDefault(param => param.Type == ParameterType.RequestBody);
+            var bodyParam = request.Parameters.FirstOrDefault(param => param is BodyParameter);
             
             // Serialize the body if required
             var payload = bodyParam?.Value ?? string.Empty;
             if (!(payload is string))
             {
-                payload = request.JsonSerializer.Serialize(payload);
+                payload = JsonSerializer.Serialize(payload);
             }
             
             // Generate the header and add it to the request

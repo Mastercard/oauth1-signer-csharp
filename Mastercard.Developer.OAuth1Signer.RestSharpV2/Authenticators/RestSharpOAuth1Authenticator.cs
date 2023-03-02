@@ -26,11 +26,11 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Authenticators
             Signer = new RestSharpSigner(consumerKey, signingKey);
         }
 
-        public Task PreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => Task.Run(() => Signer.Sign(BaseUri, request));
+        public Task PreAuthenticate(RestClient client, RestRequest request, ICredentials credentials) => Task.Run(() => Signer.Sign(BaseUri, request));
 
         public Task PreAuthenticate(HttpClient client, HttpRequestMessage request, ICredentials credentials) => throw new NotImplementedException();
 
-        public bool CanPreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials) => true;
+        public bool CanPreAuthenticate(RestClient client, RestRequest request, ICredentials credentials) => true;
 
         public bool CanPreAuthenticate(HttpClient client, HttpRequestMessage request, ICredentials credentials) => false;
 
@@ -38,7 +38,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Authenticators
 
         public Task HandleChallenge(HttpClient client, HttpRequestMessage request, ICredentials credentials, HttpResponseMessage response) => throw new NotImplementedException();
 
-        public void Authenticate(IRestClient client, IRestRequest request)
+        ValueTask IAuthenticator.Authenticate(RestClient client, RestRequest request)
         {
             throw new NotImplementedException();
         }

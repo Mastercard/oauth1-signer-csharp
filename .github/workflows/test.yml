@@ -38,18 +38,34 @@ jobs:
             mono: none
             TEST_PROJECT: $NETCORE3_TEST_PROJECT
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup .NET 6
+        uses: actions/setup-dotnet@v1.9.0
+        with:
+          dotnet-version: 6.0.x
+      - name: Build using .NET 6
+        run: >
+          export PATH="$PATH:$HOME/.dotnet/tools"  
+          
+          dotnet build ${{ env.NETCORE2_TEST_PROJECT }} -c Release
+          
+          dotnet build ${{ env.NETCORE3_TEST_PROJECT }} -c Release
+      - name: Setup .NET [Core] ${{ matrix.dotnet }}
+        uses: actions/setup-dotnet@v1.9.0
         with:
           dotnet-version: '${{ matrix.dotnet }}'
-      - name: Test
+      - name: List .NET SDKs
+        run: >
+          dotnet --list-sdks
+      - name: Run tests using .NET [Core] ${{ matrix.dotnet }}
         run: >
           export PATH="$PATH:$HOME/.dotnet/tools"
-
+          
           dotnet test ${{ matrix.TEST_PROJECT }} -c Release
           -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true
           /p:CoverletOutputFormat="opencover"
           /p:CoverletOutput="bin/coverage.xml"
-
+      - name: Local publish
+        run: >
           dotnet publish ${{ matrix.TEST_PROJECT }} -c Release
