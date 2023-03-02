@@ -51,7 +51,7 @@ jobs:
             /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/NetCore3/bin/tests.trx" \
             /d:sonar.cs.opencover.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/NetCore3/bin/coverage.xml"
 
-          dotnet test $NETCORE5_TEST_PROJECT -c Release
+          dotnet test $NETCORE3_TEST_PROJECT -c Release
           -l:"trx;LogFileName=tests.trx" -r:"./Mastercard.Developer.OAuth1Signer.Tests/NetCore3/bin/" /p:CollectCoverage=true
           /p:CoverletOutputFormat="opencover"
           /p:CoverletOutput="bin/coverage.xml"
