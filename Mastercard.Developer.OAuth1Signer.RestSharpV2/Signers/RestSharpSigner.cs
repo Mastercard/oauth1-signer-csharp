@@ -40,8 +40,6 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers
                 fullUri.Append("/").Append(resource);
             }
 
-            // System.RuntimeType
-
             // Add query params
             var parameterString = new StringBuilder();
             foreach (var requestParameter in request.Parameters.Where(p => p is QueryParameter))
