@@ -1,10 +1,10 @@
 using System;
 using Mastercard.Developer.OAuth1Signer.RestSharpV2.Signers;
-using Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Test;
+using Mastercard.Developer.OAuth1Signer.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
+namespace Mastercard.Developer.OAuth1Signer.Tests.Signers
 {
     [TestClass]
     public class RestSharpV2SignerTest
@@ -21,11 +21,16 @@ namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Signers
                 Method = Method.Post,
                 Resource = "/service/{param1}"
             };
-
+            
+        
+            //request.AddHeader("Accept", "application/json");
+            //request.AddHeader("Content-Type", "application/json");
+            request.RequestFormat = DataFormat.Json;
             request.AddUrlSegment("param1", "value");
             request.AddQueryParameter("param2", "with spaces");
             request.AddQueryParameter("param3", "with spaces");
-            request.AddJsonBody("param4", "{\"foo\":\"bår\"}");
+            //request.AddBody("{\"param4\": {\"foo\":\"bar\"}}");
+            request.AddJsonBody("{\"param4\": {\"foo\":\"bar\"}}");
 
             // WHEN
             var instanceUnderTest = new RestSharpSigner(consumerKey, signingKey);

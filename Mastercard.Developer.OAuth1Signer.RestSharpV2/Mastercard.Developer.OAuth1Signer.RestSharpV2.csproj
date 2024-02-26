@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.4.0</Version>
     <Product>Mastercard.Developer.OAuth1Signer.RestSharpV2</Product>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="108.0.3" /> <!-- Minimum version, inclusive -->
+    <PackageReference Include="RestSharp" Version="110.2.0" /> <!-- Minimum version, inclusive -->
   </ItemGroup>
 
   <ItemGroup>
