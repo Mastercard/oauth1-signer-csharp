@@ -4,7 +4,7 @@ using Mastercard.Developer.OAuth1Signer.Core.Utils;
 
 // ReSharper disable InconsistentNaming
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Test
+namespace Mastercard.Developer.OAuth1Signer.Tests.Utils
 {
     internal static class TestUtils
     {

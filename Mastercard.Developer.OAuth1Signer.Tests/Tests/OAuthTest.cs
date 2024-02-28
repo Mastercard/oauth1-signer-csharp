@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Text;
 using Mastercard.Developer.OAuth1Signer.Core;
-using Mastercard.Developer.OAuth1Signer.Tests.NetCore2.Test;
+using Mastercard.Developer.OAuth1Signer.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Mastercard.Developer.OAuth1Signer.Tests.NetCore2
+namespace Mastercard.Developer.OAuth1Signer.Tests
 {
     [TestClass]
     public class OAuthTest

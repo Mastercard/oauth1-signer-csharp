@@ -38,7 +38,7 @@ namespace Mastercard.Developer.OAuth1Signer.RestSharpV2.Authenticators
 
         public Task HandleChallenge(HttpClient client, HttpRequestMessage request, ICredentials credentials, HttpResponseMessage response) => throw new NotImplementedException();
 
-        ValueTask IAuthenticator.Authenticate(RestClient client, RestRequest request)
+        ValueTask IAuthenticator.Authenticate(IRestClient client, RestRequest request)
         {
             throw new NotImplementedException();
         }
