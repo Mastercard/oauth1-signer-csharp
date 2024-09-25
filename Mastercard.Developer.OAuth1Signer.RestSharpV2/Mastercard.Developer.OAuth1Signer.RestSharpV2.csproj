@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <Product>Mastercard.Developer.OAuth1Signer.RestSharpV2</Product>
     <Authors>Mastercard</Authors>
     <Company>Mastercard</Company>
