@@ -2,7 +2,7 @@
 [![](https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg)](https://developer.mastercard.com/)
 
 [![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/Build%20&%20Test/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3A%22Build+%26+Test%22)
-[![](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_oauth1-signer-csharp&metric=alert_status)](https://sonarcloud.io/dashboard?id=Mastercard_oauth1-signer-csharp)
+[![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/Sonar/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3ASonar)
 [![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/broken%20links%3F/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3A%22broken+links%3F%22)
 [![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.Core.svg?label=nuget%20|%20core)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.Core/)
 [![](https://img.shields.io/nuget/v/Mastercard.Developer.OAuth1Signer.RestSharp.svg?label=nuget%20|%20restsharp%20portable)](https://www.nuget.org/packages/Mastercard.Developer.OAuth1Signer.RestSharp/)
