@@ -1,5 +1,9 @@
 # oauth1-signer-csharp
-[![](https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg)](https://developer.mastercard.com/)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-light.svg">
+  <img src="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg" alt="mastercard developers logo">
+</picture>
 
 [![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/Build%20&%20Test/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3A%22Build+%26+Test%22)
 [![](https://github.com/Mastercard/oauth1-signer-csharp/workflows/Sonar/badge.svg)](https://github.com/Mastercard/oauth1-signer-csharp/actions?query=workflow%3ASonar)
